@@ -2,11 +2,11 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# 运行并部署您的 AI Studio 应用
 
-This contains everything you need to run your app locally.
+包含在本地运行应用所需的一切。
 
-View your app in AI Studio: https://ai.studio/apps/drive/1ZUaTT-oiv0_QofPIzWlLgpvnWC-k1FG2
+在 AI Studio 中查看应用: https://ai.studio/apps/drive/1ZUaTT-oiv0_QofPIzWlLgpvnWC-k1FG2
 
 ## 技术栈 (Tech Stack)
 
@@ -27,12 +27,12 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ZUaTT-oiv0_QofPIzWlLgp
 | `ai-sdk`             | Vercel AI SDK 使用指南            |
 | `ui-ux-pro-max`      | UI/UX 设计规范和最佳实践          |
 
-## Run Locally
+## 本地运行
 
-**Prerequisites:** Node.js
+**先决条件**: Node.js (v18 或更高版本)
 
-1. Install dependencies:
+1. 安装依赖:
    `npm install`
-2. (Optional) Set the `GEMINI_API_KEY` in [.env.local](.env.local) if using cloud providers. For local models (Ollama), this is skipped.
-3. Run the app:
+2. (可选) 如果使用云端提供商，请在 [.env.local](.env.local) 中设置 `GEMINI_API_KEY`。对于本地模型 (Ollama)，此步骤可跳过。
+3. 运行应用:
    `npm run dev`
