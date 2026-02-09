@@ -48,8 +48,8 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
    npm install
    ```
 
-3. Configure environment variables:
-   Copy `.env.example` to `.env.local` and add your API keys.
+3. Configure environment variables (Optional):
+   Copy `.env.example` to `.env.local` if you plan to use cloud providers (Google Gemini, OpenAI, etc.).
 
    ```bash
    cp .env.example .env.local
@@ -61,6 +61,8 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
    GEMINI_API_KEY=your_api_key_here
    # Add other provider keys as needed
    ```
+
+   > **Note**: For local models (like Ollama), API keys are not required.
 
 4. Run the development server:
    ```bash
