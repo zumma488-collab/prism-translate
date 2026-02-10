@@ -168,7 +168,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
         // Has conflicts: show confirmation dialog
         setImportConflict({
           imported: result.settings,
-          conflictNames: conflicts.map(c => c.name),
+          conflictNames: conflicts.map(c => `${c.name} (${c.type})`),
           newCount: newProviders.length,
         });
       }
@@ -182,7 +182,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
     const merged = mergeSettings(localSettings, importConflict.imported);
     setLocalSettings(merged);
     onSave(merged);
-    setToastMessage(`Merged: ${importConflict.newCount} new provider(s) added, ${importConflict.conflictNames.length} existing kept.`);
+    setToastMessage(`Merged: ${importConflict.newCount} new provider(s) added, models from ${importConflict.conflictNames.length} existing provider(s) merged.`);
     setImportConflict(null);
   };
 

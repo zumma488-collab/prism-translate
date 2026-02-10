@@ -86,19 +86,22 @@ export async function importConfig(file: File): Promise<ImportResult> {
 
 /**
  * Detect conflicting providers between existing and imported settings
- * Conflict is based on provider name (not ID, since IDs are UUIDs per device)
+ * Conflict is based on provider type + name combination
  */
 export function detectConflicts(
   existing: AppSettings,
   imported: AppSettings
 ): { conflicts: ProviderConfig[]; newProviders: ProviderConfig[] } {
-  const existingNames = new Set(existing.providers.map(p => p.name.toLowerCase()));
+  const existingKeys = new Set(
+    existing.providers.map(p => `${p.type}::${p.name.toLowerCase()}`)
+  );
 
   const conflicts: ProviderConfig[] = [];
   const newProviders: ProviderConfig[] = [];
 
   for (const provider of imported.providers) {
-    if (existingNames.has(provider.name.toLowerCase())) {
+    const key = `${provider.type}::${provider.name.toLowerCase()}`;
+    if (existingKeys.has(key)) {
       conflicts.push(provider);
     } else {
       newProviders.push(provider);
@@ -109,13 +112,30 @@ export function detectConflicts(
 }
 
 /**
- * Merge imported settings into existing settings (keep existing, add new)
+ * Merge imported settings into existing settings
+ * - New providers (different type or name): added directly
+ * - Conflicting providers (same type + name): keep existing config, merge new models by model ID
  */
 export function mergeSettings(existing: AppSettings, imported: AppSettings): AppSettings {
-  const { newProviders } = detectConflicts(existing, imported);
+  const { newProviders, conflicts } = detectConflicts(existing, imported);
+
+  // For conflicting providers, merge their model lists (handle multiple matches)
+  const mergedProviders = existing.providers.map(ep => {
+    const matches = conflicts.filter(
+      c => c.type === ep.type && c.name.toLowerCase() === ep.name.toLowerCase()
+    );
+    if (matches.length === 0) return ep;
+
+    const existingModelIds = new Set(ep.models.map(m => m.id));
+    const newModels = matches.flatMap(m => m.models).filter(m => !existingModelIds.has(m.id));
+    if (newModels.length === 0) return ep;
+
+    return { ...ep, models: [...ep.models, ...newModels] };
+  });
+
   return {
     ...existing,
-    providers: [...existing.providers, ...newProviders],
+    providers: [...mergedProviders, ...newProviders],
   };
 }
 
