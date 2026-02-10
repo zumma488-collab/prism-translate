@@ -10,6 +10,8 @@
 
 A modern AI-powered translation dashboard built with React 19, TypeScript, and the Vercel AI SDK. This project integrates multiple AI providers (Google Gemini, OpenAI, etc.) to deliver high-quality translations in a sleek, responsive interface.
 
+[Live Demo](https://zumma488.github.io/prism-translate/)
+
 ## ✨ Features
 
 - **Multi-Model Support**: Seamlessly switch between Google Gemini, OpenAI, and other providers via Vercel AI SDK.

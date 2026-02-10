@@ -6,6 +6,8 @@
 
 包含在本地运行应用所需的一切。
 
+[在线演示](https://zumma488.github.io/prism-translate/)
+
 ## 技术栈 (Tech Stack)
 
 - **框架**: React 19 + TypeScript + Vite
