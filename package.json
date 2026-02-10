@@ -25,6 +25,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:gh": "npx tsc && vite build",
     "preview": "vite preview",
     "lint": "tsc"
   },

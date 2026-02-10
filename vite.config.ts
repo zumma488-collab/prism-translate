@@ -4,7 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
   return {
+    base: isGitHubPages ? '/prism-translate/' : '/',
     server: {
       port: 3000,
       host: '0.0.0.0',
