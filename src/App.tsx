@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from './components/Header';
 import SettingsModal from './components/SettingsModal';
 import TranslationCard from './components/TranslationCard';
@@ -17,6 +18,8 @@ const EMPTY_INITIAL_SETTINGS: AppSettings = {
 };
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
+
   // Application State
   const [inputText, setInputText] = useState('');
   const [translations, setTranslations] = useState<TranslationResult[]>([]);
@@ -159,7 +162,7 @@ const App: React.FC = () => {
     } catch (error) {
       console.error(error);
       setStatus(AppStatus.ERROR);
-      alert(`Translation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(t('errors.translationFailed', { error: error instanceof Error ? error.message : t('errors.unknown') }));
     }
   };
 
@@ -230,8 +233,8 @@ const App: React.FC = () => {
                   <div className="size-16 rounded-full bg-muted flex items-center justify-center mb-4">
                     <span className="material-symbols-outlined text-3xl">translate</span>
                   </div>
-                  <p className="text-sm font-medium">Translations will appear here</p>
-                  <p className="text-xs text-muted-foreground/70 mt-1">Enter text and click Translate to get started</p>
+                  <p className="text-sm font-medium">{t('translation.output.emptyTitle')}</p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">{t('translation.output.emptySubtitle')}</p>
                 </div>
               )}
 

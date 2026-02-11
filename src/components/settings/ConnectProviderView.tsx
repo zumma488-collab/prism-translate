@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ModelProvider } from '../../types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +16,7 @@ interface ConnectProviderViewProps {
 }
 
 const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType, onCancel }) => {
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
     const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
 
@@ -65,7 +67,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
                     onClick={() => toggleSection(category)}
                     className="w-full flex items-center justify-between px-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider hover:text-foreground transition-colors rounded-lg hover:bg-accent/50"
                 >
-                    <span>{CATEGORY_TITLES[category]} ({providers.length})</span>
+                    <span>{t('settings.categories.' + category)} ({providers.length})</span>
                     <span className="material-symbols-outlined text-[16px] transition-transform duration-200" style={{ transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)' }}>
                         expand_more
                     </span>
@@ -82,7 +84,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
                 <Button variant="ghost" size="icon" onClick={onCancel}>
                     <span className="material-symbols-outlined">arrow_back</span>
                 </Button>
-                <h2 className="text-xl font-bold text-foreground tracking-tight">Connect Provider</h2>
+                <h2 className="text-xl font-bold text-foreground tracking-tight">{t('settings.connectProvider')}</h2>
             </div>
 
             {/* Search */}
@@ -90,7 +92,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
                 <div className="relative">
                     <Input
                         type="text"
-                        placeholder="Search providers..."
+                        placeholder={t('settings.provider.searchPlaceholder')}
                         className="pl-10"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -110,8 +112,8 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
                             <span className="material-symbols-outlined">add_circle</span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-sm font-bold text-foreground">Custom Provider</span>
-                            <span className="text-xs text-muted-foreground">Any OpenAI Compatible API</span>
+                            <span className="text-sm font-bold text-foreground">{t('settings.provider.customProvider')}</span>
+                            <span className="text-xs text-muted-foreground">{t('settings.provider.customDescription')}</span>
                         </div>
                         <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
                             <span className="material-symbols-outlined text-muted-foreground">chevron_right</span>
@@ -125,13 +127,14 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
                 {filteredProviders ? (
                     <div className="space-y-1">
                         <div className="px-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                            Search Results ({filteredProviders.length})
+                            {t('settings.provider.searchResults', { count: filteredProviders.length })}
                         </div>
                         {filteredProviders.length > 0 ? (
                             filteredProviders.map((provider, index) => renderProviderButton(provider, index))
                         ) : (
-                            <div className="text-center py-8 text-muted-foreground">
-                                No matching providers found
+                            <div className="flex flex-col items-center justify-center py-10 text-muted-foreground">
+                                <span className="material-symbols-outlined text-4xl mb-2 opacity-50">search_off</span>
+                                <p>{t('settings.provider.noResults')}</p>
                             </div>
                         )}
                     </div>

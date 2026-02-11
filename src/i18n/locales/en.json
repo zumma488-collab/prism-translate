@@ -1,0 +1,106 @@
+{
+  "header": {
+    "title": "AI Translator",
+    "selectModel": "Select Model",
+    "changeModel": "Change Model",
+    "manage": "Manage",
+    "settings": "Settings",
+    "noModels": "No models enabled.",
+    "language": "Language"
+  },
+  "translation": {
+    "input": {
+      "placeholder": "Enter text to translate...",
+      "autoDetect": "Auto Detect",
+      "languages": "{{count}} languages",
+      "languages_one": "{{count}} language",
+      "languages_other": "{{count}} languages",
+      "charCount": "{{count}} / 5000",
+      "addLanguage": "Add Language",
+      "add": "Add",
+      "translate": "Translate",
+      "translating": "Translating...",
+      "translateHotkey": "Translate (Ctrl+Enter)",
+      "selectLanguageWarning": "Please select at least one target language",
+      "cannotRemoveLanguage": "Cannot remove language during translation",
+      "removeLanguage": "Remove {{lang}}"
+    },
+    "output": {
+      "emptyTitle": "Translations will appear here",
+      "emptySubtitle": "Enter text and click Translate to get started",
+      "copy": "Copy",
+      "listen": "Listen",
+      "showMore": "Show more",
+      "showLess": "Show less"
+    }
+  },
+  "settings": {
+    "manageModels": "Manage Models",
+    "connectProvider": "Connect Provider",
+    "editProvider": "Edit Provider",
+    "description": "Manage your AI provider settings and models",
+    "searchModels": "Search models...",
+    "importConfig": "Import Config",
+    "exportConfig": "Export Config",
+    "deleteProvider": "Delete Provider",
+    "noModels": "No models configured.",
+    "noModelsFound": "No models found.",
+    "confirmDelete": "Are you sure you want to remove this provider?",
+    "categories": {
+      "popular": "Popular",
+      "native": "Native SDK",
+      "community": "Community / Local",
+      "compatible": "OpenAI Compatible"
+    },
+    "form": {
+      "displayName": "Display Name",
+      "displayNamePlaceholder": "My Provider",
+      "baseUrl": "Base URL",
+      "baseUrlPlaceholder": "https://api.example.com/v1",
+      "apiKey": "API Key",
+      "apiKeyPlaceholder": "sk-...",
+      "apiKeyHint": "Stored locally in your browser.",
+      "models": "Models",
+      "modelId": "Model ID (e.g. gpt-4o)",
+      "modelIdPlaceholder": "model-id",
+      "addModel": "Add",
+      "updateProvider": "Update Provider",
+      "nameRequired": "Provider name is required",
+      "noModelsAdded": "No models added yet."
+    },
+    "provider": {
+      "searchPlaceholder": "Search providers...",
+      "customProvider": "Custom Provider",
+      "customDescription": "Any OpenAI Compatible API",
+      "searchResults": "Search Results ({{count}})",
+      "noResults": "No matching providers found",
+      "categoryCount": "{{category}} ({{count}})"
+    },
+    "import": {
+      "conflictTitle": "Import Conflict",
+      "conflictMessage": "The following providers already exist:",
+      "newProvidersMessage": "{{count}} new provider(s) will be added.",
+      "newProvidersMessage_one": "{{count}} new provider will be added.",
+      "newProvidersMessage_other": "{{count}} new providers will be added.",
+      "cancel": "Cancel",
+      "merge": "Merge",
+      "override": "Override"
+    },
+    "toast": {
+      "exportSuccess": "Configuration exported successfully!",
+      "exportFailed": "Export failed: {{error}}",
+      "importSuccess": "Imported {{count}} provider(s) successfully!",
+      "importSuccess_one": "Imported {{count}} provider successfully!",
+      "importSuccess_other": "Imported {{count}} providers successfully!",
+      "importFailed": "Import failed",
+      "mergeSuccess": "Merged: {{new}} new provider(s) added, models from {{merged}} existing provider(s) merged.",
+      "overrideSuccess": "Override complete: {{count}} provider(s) imported.",
+      "overrideSuccess_one": "Override complete: {{count}} provider imported.",
+      "overrideSuccess_other": "Override complete: {{count}} providers imported."
+    }
+  },
+  "errors": {
+    "translationFailed": "Translation failed: {{error}}",
+    "unknown": "Unknown error"
+  }
+}

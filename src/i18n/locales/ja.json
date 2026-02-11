@@ -1,0 +1,98 @@
+{
+  "header": {
+    "title": "AI 翻訳ツール",
+    "selectModel": "モデルを選択",
+    "changeModel": "モデルを変更",
+    "manage": "管理",
+    "settings": "設定",
+    "noModels": "有効なモデルがありません。",
+    "language": "言語"
+  },
+  "translation": {
+    "input": {
+      "placeholder": "翻訳するテキストを入力...",
+      "autoDetect": "自動検出",
+      "languages": "{{count}} 言語",
+      "charCount": "{{count}} / 5000",
+      "addLanguage": "言語を追加",
+      "add": "追加",
+      "translate": "翻訳",
+      "translating": "翻訳中...",
+      "translateHotkey": "翻訳 (Ctrl+Enter)",
+      "selectLanguageWarning": "少なくとも1つのターゲット言語を選択してください",
+      "cannotRemoveLanguage": "翻訳中は言語を削除できません",
+      "removeLanguage": "{{lang}} を削除"
+    },
+    "output": {
+      "emptyTitle": "翻訳結果がここに表示されます",
+      "emptySubtitle": "テキストを入力して翻訳をクリックしてください",
+      "copy": "コピー",
+      "listen": "読み上げ",
+      "showMore": "もっと見る",
+      "showLess": "折りたたむ"
+    }
+  },
+  "settings": {
+    "manageModels": "モデル管理",
+    "connectProvider": "プロバイダーを接続",
+    "editProvider": "プロバイダーを編集",
+    "description": "AI プロバイダーの設定とモデルを管理",
+    "searchModels": "モデルを検索...",
+    "importConfig": "設定をインポート",
+    "exportConfig": "設定をエクスポート",
+    "deleteProvider": "プロバイダーを削除",
+    "noModels": "モデルが設定されていません。",
+    "noModelsFound": "モデルが見つかりません。",
+    "confirmDelete": "このプロバイダーを削除してもよろしいですか？",
+    "categories": {
+      "popular": "人気",
+      "native": "ネイティブ SDK",
+      "community": "コミュニティ / ローカル",
+      "compatible": "OpenAI 互換"
+    },
+    "form": {
+      "displayName": "表示名",
+      "displayNamePlaceholder": "マイプロバイダー",
+      "baseUrl": "ベース URL",
+      "baseUrlPlaceholder": "https://api.example.com/v1",
+      "apiKey": "API キー",
+      "apiKeyPlaceholder": "sk-...",
+      "apiKeyHint": "ブラウザにローカル保存されます。",
+      "models": "モデル",
+      "modelId": "モデル ID (例: gpt-4o)",
+      "modelIdPlaceholder": "model-id",
+      "addModel": "追加",
+      "updateProvider": "プロバイダーを更新",
+      "nameRequired": "プロバイダー名は必須です",
+      "noModelsAdded": "まだモデルが追加されていません。"
+    },
+    "provider": {
+      "searchPlaceholder": "プロバイダーを検索...",
+      "customProvider": "カスタムプロバイダー",
+      "customDescription": "任意の OpenAI 互換 API",
+      "searchResults": "検索結果 ({{count}})",
+      "noResults": "一致するプロバイダーが見つかりません",
+      "categoryCount": "{{category}} ({{count}})"
+    },
+    "import": {
+      "conflictTitle": "インポートの競合",
+      "conflictMessage": "次のプロバイダーは既に存在します：",
+      "newProvidersMessage": "{{count}} 個の新しいプロバイダーが追加されます。",
+      "cancel": "キャンセル",
+      "merge": "マージ",
+      "override": "上書き"
+    },
+    "toast": {
+      "exportSuccess": "設定のエクスポートに成功しました！",
+      "exportFailed": "エクスポートに失敗しました：{{error}}",
+      "importSuccess": "{{count}} 個のプロバイダーをインポートしました！",
+      "importFailed": "インポートに失敗しました",
+      "mergeSuccess": "マージ完了：{{new}} 個の新しいプロバイダーを追加、{{merged}} 個の既存プロバイダーのモデルをマージしました。",
+      "overrideSuccess": "上書き完了：{{count}} 個のプロバイダーをインポートしました。"
+    }
+  },
+  "errors": {
+    "translationFailed": "翻訳に失敗しました：{{error}}",
+    "unknown": "不明なエラー"
+  }
+}

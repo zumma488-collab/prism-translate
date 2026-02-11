@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppSettings, ProviderConfig, ModelProvider } from '../types';
 import ManageModelsView from './settings/ManageModelsView';
 import ConnectProviderView from './settings/ConnectProviderView';
@@ -17,6 +18,7 @@ interface SettingsModalProps {
 type ViewState = 'manage' | 'connect' | 'edit';
 
 const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentSettings, onSave }) => {
+  const { t } = useTranslation();
   const [view, setView] = useState<ViewState>('manage');
 
   // Staging state
@@ -95,7 +97,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
   };
 
   const handleDeleteProvider = (id: string) => {
-    if (!confirm("Are you sure you want to remove this provider?")) return;
+    if (!confirm(t('settings.confirmDelete'))) return;
 
     const newProviders = localSettings.providers.filter(p => p.id !== id);
     const updatedSettings = { ...localSettings, providers: newProviders };
@@ -138,9 +140,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
   const handleExportConfig = async () => {
     try {
       await exportConfig(localSettings);
-      setToastMessage('Configuration exported successfully!');
+      setToastMessage(t('settings.toast.exportSuccess'));
     } catch (e) {
-      setToastMessage(`Export failed: ${e instanceof Error ? e.message : 'Unknown error'}`);
+      setToastMessage(t('settings.toast.exportFailed', { error: e instanceof Error ? e.message : t('errors.unknown') }));
     }
   };
 
@@ -163,7 +165,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
         const merged = mergeSettings(localSettings, result.settings);
         setLocalSettings(merged);
         onSave(merged);
-        setToastMessage(`Imported ${newProviders.length} provider(s) successfully!`);
+        setToastMessage(t('settings.toast.importSuccess', { count: newProviders.length }));
       } else {
         // Has conflicts: show confirmation dialog
         setImportConflict({
@@ -173,7 +175,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
         });
       }
     } catch (err) {
-      setToastMessage(err instanceof Error ? err.message : 'Import failed');
+      setToastMessage(err instanceof Error ? err.message : t('settings.toast.importFailed'));
     }
   };
 
@@ -182,7 +184,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
     const merged = mergeSettings(localSettings, importConflict.imported);
     setLocalSettings(merged);
     onSave(merged);
-    setToastMessage(`Merged: ${importConflict.newCount} new provider(s) added, models from ${importConflict.conflictNames.length} existing provider(s) merged.`);
+    setToastMessage(t('settings.toast.mergeSuccess', { new: importConflict.newCount, merged: importConflict.conflictNames.length }));
     setImportConflict(null);
   };
 
@@ -191,7 +193,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
     const overridden = overrideSettings(localSettings, importConflict.imported);
     setLocalSettings(overridden);
     onSave(overridden);
-    setToastMessage(`Override complete: ${importConflict.imported.providers.length} provider(s) imported.`);
+    setToastMessage(t('settings.toast.overrideSuccess', { count: importConflict.imported.providers.length }));
     setImportConflict(null);
   };
 
@@ -199,12 +201,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-2xl h-[90vh] sm:h-[600px] flex flex-col p-0 gap-0 overflow-hidden bg-white dark:bg-[#1a2632]">
         <DialogTitle className="sr-only">
-          {view === 'manage' && 'Manage Models'}
-          {view === 'connect' && 'Connect Provider'}
-          {view === 'edit' && 'Edit Provider'}
+          {view === 'manage' && t('settings.manageModels')}
+          {view === 'connect' && t('settings.connectProvider')}
+          {view === 'edit' && t('settings.editProvider')}
         </DialogTitle>
         <DialogDescription className="sr-only">
-          Manage your AI provider settings and models
+          {t('settings.description')}
         </DialogDescription>
 
         {/* Hidden file input for import */}
@@ -251,10 +253,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
             <div className="bg-background rounded-xl p-6 mx-4 max-w-md w-full shadow-2xl border border-border">
               <div className="flex items-center gap-2 mb-3">
                 <span className="material-symbols-outlined text-amber-500 text-xl">warning</span>
-                <h3 className="text-lg font-semibold text-foreground">Import Conflict</h3>
+                <h3 className="text-lg font-semibold text-foreground">{t('settings.import.conflictTitle')}</h3>
               </div>
               <p className="text-sm text-muted-foreground mb-2">
-                The following providers already exist:
+                {t('settings.import.conflictMessage')}
               </p>
               <div className="bg-muted/50 rounded-lg p-3 mb-4 max-h-24 overflow-y-auto">
                 {importConflict.conflictNames.map((name, i) => (
@@ -265,20 +267,20 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
               </div>
               {importConflict.newCount > 0 && (
                 <p className="text-sm text-muted-foreground mb-4">
-                  {importConflict.newCount} new provider(s) will be added.
+                  {t('settings.import.newProvidersMessage', { count: importConflict.newCount })}
                 </p>
               )}
               <div className="flex gap-2 justify-end">
                 <Button variant="outline" size="sm" onClick={() => setImportConflict(null)}>
-                  Cancel
+                  {t('settings.import.cancel')}
                 </Button>
                 <Button variant="outline" size="sm" onClick={handleImportMerge}>
                   <span className="material-symbols-outlined text-[16px] mr-1">merge</span>
-                  Merge
+                  {t('settings.import.merge')}
                 </Button>
                 <Button variant="default" size="sm" onClick={handleImportOverride}>
                   <span className="material-symbols-outlined text-[16px] mr-1">swap_horiz</span>
-                  Override
+                  {t('settings.import.override')}
                 </Button>
               </div>
             </div>

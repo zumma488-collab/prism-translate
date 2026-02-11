@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppSettings, ProviderConfig } from '../../types';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -23,6 +24,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
     onExportConfig,
     onImportConfig
 }) => {
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
 
     const toggleModel = (providerId: string, modelId: string, enabled: boolean) => {
@@ -60,9 +62,9 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
             {/* Header */}
             <div className="flex items-center justify-between pl-6 pr-14 py-4 border-b border-border">
                 <div>
-                    <h2 className="text-xl font-bold text-foreground tracking-tight">Manage Models</h2>
+                    <h2 className="text-xl font-bold text-foreground tracking-tight">{t('settings.manageModels')}</h2>
                     <p className="text-sm text-muted-foreground mt-1">
-                        Models shown in the custom picker.
+                        {t('settings.description')}
                     </p>
                 </div>
             </div>
@@ -74,7 +76,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search models..."
+                        placeholder={t('settings.searchModels')}
                         className="pl-10"
                     />
                     <span className="material-symbols-outlined absolute left-3 top-2.5 text-muted-foreground text-[18px]">search</span>
@@ -86,14 +88,14 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                     className="shrink-0"
                 >
                     <span className="material-symbols-outlined text-[18px]">add</span>
-                    Connect Provider
+                    {t('settings.connectProvider')}
                 </Button>
                 <Button
                     onClick={onImportConfig}
                     variant="outline"
                     size="icon"
                     className="shrink-0 size-9"
-                    title="Import Config"
+                    title={t('settings.importConfig')}
                 >
                     <span className="material-symbols-outlined text-[18px]">upload</span>
                 </Button>
@@ -102,7 +104,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                     variant="outline"
                     size="icon"
                     className="shrink-0 size-9"
-                    title="Export Config"
+                    title={t('settings.exportConfig')}
                 >
                     <span className="material-symbols-outlined text-[18px]">download</span>
                 </Button>
@@ -122,7 +124,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                                     size="icon"
                                     onClick={() => onEditProvider(provider.id)}
                                     className="size-7 hover:bg-muted"
-                                    title="Edit Provider"
+                                    title={t('settings.editProvider')}
                                 >
                                     <span className="material-symbols-outlined text-[16px]">edit</span>
                                 </Button>
@@ -131,7 +133,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                                     size="icon"
                                     onClick={() => onDeleteProvider(provider.id)}
                                     className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
-                                    title="Delete Provider"
+                                    title={t('settings.deleteProvider')}
                                 >
                                     <span className="material-symbols-outlined text-[16px]">delete</span>
                                 </Button>
@@ -158,7 +160,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                 {filteredProviders.length === 0 && (
                     <div className="flex flex-col items-center justify-center py-10 text-muted-foreground">
                         <span className="material-symbols-outlined text-4xl mb-2 opacity-50">search_off</span>
-                        <p>No models found.</p>
+                        <p>{searchQuery ? t('settings.noModelsFound') : t('settings.noModels')}</p>
                     </div>
                 )}
             </div>

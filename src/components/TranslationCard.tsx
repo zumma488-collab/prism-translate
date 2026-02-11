@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TranslationResult, LanguageConfig } from '../types';
 
 interface TranslationCardProps {
@@ -10,6 +11,7 @@ interface TranslationCardProps {
 const COLLAPSE_THRESHOLD = 200; // Characters threshold for collapsing
 
 const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLanguages = 1 }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Only enable collapsing when multiple languages AND text is long
@@ -52,14 +54,14 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
             <button
               onClick={handleCopy}
               className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-              title="Copy"
+              title={t('translation.output.copy')}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>content_copy</span>
             </button>
             <button
               onClick={handleSpeak}
               className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-              title="Listen"
+              title={t('translation.output.listen')}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>volume_up</span>
             </button>
@@ -90,7 +92,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
               {isExpanded ? 'expand_less' : 'expand_more'}
             </span>
-            {isExpanded ? 'Show less' : 'Show more'}
+            {isExpanded ? t('translation.output.showLess') : t('translation.output.showMore')}
           </button>
         )}
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ProviderConfig, ModelDefinition, ModelProvider } from '../../types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +15,7 @@ interface EditProviderViewProps {
 }
 
 const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSave, onDelete, onBack }) => {
+    const { t } = useTranslation();
     const [config, setConfig] = useState<ProviderConfig>({
         id: initialConfig.id || crypto.randomUUID(),
         type: initialConfig.type,
@@ -31,12 +33,12 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
         if (!config.name) {
             if (config.type === 'google') setConfig(c => ({ ...c, name: 'Google Gemini' }));
             if (config.type === 'openai') setConfig(c => ({ ...c, name: 'OpenAI' }));
-            if (config.type === 'custom') setConfig(c => ({ ...c, name: 'Custom Provider' }));
+            if (config.type === 'custom') setConfig(c => ({ ...c, name: t('settings.provider.customProvider') }));
         }
         if (!config.baseUrl && config.type === 'openai') {
             setConfig(c => ({ ...c, baseUrl: 'https://api.openai.com/v1' }));
         }
-    }, [config.type]);
+    }, [config.type, t]);
 
     const handleAddModel = () => {
         if (!newModelId.trim()) return;
@@ -55,7 +57,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
     };
 
     const handleSave = () => {
-        if (!config.name.trim()) return alert("Provider name is required");
+        if (!config.name.trim()) return alert(t('settings.form.nameRequired'));
         onSave(config);
     };
 
@@ -67,7 +69,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                     <span className="material-symbols-outlined">arrow_back</span>
                 </Button>
                 <h2 className="text-xl font-bold text-foreground tracking-tight">
-                    {config.type === 'custom' ? 'Custom Provider' : config.type === 'google' ? 'Google Gemini' : 'OpenAI'}
+                    {config.type === 'custom' ? t('settings.provider.customProvider') : config.type === 'google' ? 'Google Gemini' : 'OpenAI'}
                 </h2>
             </div>
 
@@ -78,26 +80,26 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
 
                 {/* Display Name */}
                 <div className="space-y-2">
-                    <Label htmlFor="displayName">Display Name</Label>
+                    <Label htmlFor="displayName">{t('settings.form.displayName')}</Label>
                     <Input
                         id="displayName"
                         type="text"
                         value={config.name}
                         onChange={(e) => setConfig({ ...config, name: e.target.value })}
-                        placeholder="My Provider"
+                        placeholder={t('settings.form.displayNamePlaceholder')}
                     />
                 </div>
 
                 {/* Base URL */}
                 {(config.type === 'openai' || config.type === 'custom') && (
                     <div className="space-y-2">
-                        <Label htmlFor="baseUrl">Base URL</Label>
+                        <Label htmlFor="baseUrl">{t('settings.form.baseUrl')}</Label>
                         <Input
                             id="baseUrl"
                             type="text"
                             value={config.baseUrl || ''}
                             onChange={(e) => setConfig({ ...config, baseUrl: e.target.value })}
-                            placeholder="https://api.example.com/v1"
+                            placeholder={t('settings.form.baseUrlPlaceholder')}
                             className="font-mono"
                         />
                     </div>
@@ -105,44 +107,44 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
 
                 {/* API Key */}
                 <div className="space-y-2">
-                    <Label htmlFor="apiKey">API Key</Label>
+                    <Label htmlFor="apiKey">{t('settings.form.apiKey')}</Label>
                     <Input
                         id="apiKey"
                         type="password"
                         value={config.apiKey}
                         onChange={(e) => setConfig({ ...config, apiKey: e.target.value })}
-                        placeholder={config.type === 'google' ? 'AIza...' : 'sk-...'}
+                        placeholder={t('settings.form.apiKeyPlaceholder')}
                         className="font-mono"
                     />
-                    <p className="text-xs text-muted-foreground">Stored locally in your browser.</p>
+                    <p className="text-xs text-muted-foreground">{t('settings.form.apiKeyHint')}</p>
                 </div>
 
                 <Separator />
 
                 {/* Models List */}
                 <div className="space-y-4">
-                    <Label>Models</Label>
+                    <Label>{t('settings.form.models')}</Label>
 
                     <div className="bg-muted rounded-xl p-4 space-y-3">
                         {/* Add Model Inputs */}
                         <div className="flex gap-2 items-end">
                             <div className="flex-1 space-y-1">
-                                <Label className="text-xs text-muted-foreground">Model ID (e.g. gpt-4o)</Label>
+                                <Label className="text-xs text-muted-foreground">{t('settings.form.modelId')}</Label>
                                 <Input
                                     type="text"
                                     value={newModelId}
                                     onChange={(e) => setNewModelId(e.target.value)}
-                                    placeholder="model-id"
+                                    placeholder={t('settings.form.modelIdPlaceholder')}
                                     className="font-mono h-9"
                                 />
                             </div>
                             <div className="flex-1 space-y-1">
-                                <Label className="text-xs text-muted-foreground">Display Name</Label>
+                                <Label className="text-xs text-muted-foreground">{t('settings.form.displayName')}</Label>
                                 <Input
                                     type="text"
                                     value={newModelName}
                                     onChange={(e) => setNewModelName(e.target.value)}
-                                    placeholder="Display Name"
+                                    placeholder={t('settings.form.displayName')}
                                     className="h-9"
                                 />
                             </div>
@@ -152,7 +154,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                                 onClick={handleAddModel}
                                 disabled={!newModelId.trim()}
                             >
-                                Add
+                                {t('settings.form.addModel')}
                             </Button>
                         </div>
 
@@ -175,7 +177,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                                 </div>
                             ))}
                             {config.models.length === 0 && (
-                                <div className="text-center py-2 text-xs text-muted-foreground">No models added yet.</div>
+                                <div className="text-center py-2 text-xs text-muted-foreground">{t('settings.form.noModelsAdded')}</div>
                             )}
                         </div>
                     </div>
@@ -184,7 +186,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                 {/* Footer Actions */}
                 <div className="pt-6">
                     <Button onClick={handleSave} className="w-full">
-                        Update Provider
+                        {t('settings.form.updateProvider')}
                     </Button>
                 </div>
             </div>
