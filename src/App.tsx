@@ -201,7 +201,7 @@ const App: React.FC = () => {
   const currentModel = activeModelMeta();
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col h-[100dvh] overflow-hidden md:overflow-hidden">
       <Header
         enabledModels={enabledModels}
         currentModel={currentModel}
@@ -211,8 +211,8 @@ const App: React.FC = () => {
       />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-hidden relative w-full max-w-[1800px] mx-auto">
-        <div className="flex flex-col md:flex-row h-full">
+      <main className="flex-1 overflow-hidden md:overflow-hidden overflow-y-auto relative w-full max-w-[1800px] mx-auto">
+        <div className="flex flex-col md:flex-row h-auto md:h-full">
 
           {/* LEFT: Input Area */}
           <TranslationInput
@@ -225,13 +225,13 @@ const App: React.FC = () => {
           />
 
           {/* RIGHT: Output Area */}
-          <div className="flex flex-col w-full md:w-1/2 h-full bg-background p-6 md:pl-4 overflow-y-auto">
-            <div className="flex flex-col gap-4 pb-20">
+          <div className="flex flex-col w-full md:w-1/2 md:h-full bg-background p-3 sm:p-6 md:pl-4 md:overflow-y-auto">
+            <div className="flex flex-col gap-3 sm:gap-4 pb-6 md:pb-20">
 
               {status === AppStatus.IDLE && translations.length === 0 && (
-                <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
-                  <div className="size-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-3xl">translate</span>
+                <div className="flex flex-col items-center justify-center h-40 sm:h-64 text-muted-foreground">
+                  <div className="size-12 sm:size-16 rounded-full bg-muted flex items-center justify-center mb-3 sm:mb-4">
+                    <span className="material-symbols-outlined text-2xl sm:text-3xl">translate</span>
                   </div>
                   <p className="text-sm font-medium">{t('translation.output.emptyTitle')}</p>
                   <p className="text-xs text-muted-foreground/70 mt-1">{t('translation.output.emptySubtitle')}</p>
@@ -253,7 +253,7 @@ const App: React.FC = () => {
               {status === AppStatus.LOADING && (
                 <>
                   {[1, 2, 3].map(i => (
-                    <div key={i} className="bg-card rounded-xl p-5 border border-border animate-pulse">
+                    <div key={i} className="bg-card rounded-xl p-3 sm:p-5 border border-border animate-pulse">
                       <div className="h-4 w-20 bg-muted rounded mb-3"></div>
                       <div className="h-5 w-3/4 bg-muted rounded mb-2"></div>
                       <div className="h-5 w-1/2 bg-muted rounded"></div>

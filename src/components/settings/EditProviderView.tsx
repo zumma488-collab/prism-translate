@@ -64,7 +64,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
     return (
         <div className="flex flex-col h-full bg-background">
             {/* Header */}
-            <div className="flex items-center gap-3 px-6 py-4 border-b border-border">
+            <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
                 <Button variant="ghost" size="icon" onClick={onBack}>
                     <span className="material-symbols-outlined">arrow_back</span>
                 </Button>
@@ -73,7 +73,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                 </h2>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-8 py-4 sm:py-6 space-y-6">
                 <p className="text-sm text-muted-foreground">
                     Configure {config.type} provider settings.
                 </p>
@@ -127,7 +127,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
 
                     <div className="bg-muted rounded-xl p-4 space-y-3">
                         {/* Add Model Inputs */}
-                        <div className="flex gap-2 items-end">
+                        <div className="flex flex-col sm:flex-row gap-2 sm:items-end">
                             <div className="flex-1 space-y-1">
                                 <Label className="text-xs text-muted-foreground">{t('settings.form.modelId')}</Label>
                                 <Input
@@ -170,7 +170,7 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                                         variant="ghost"
                                         size="icon"
                                         onClick={() => removeModel(i)}
-                                        className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive size-8"
+                                        className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-muted-foreground hover:text-destructive size-8"
                                     >
                                         <span className="material-symbols-outlined text-[16px]">close</span>
                                     </Button>

@@ -80,7 +80,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
     return (
         <div className="flex flex-col h-full bg-background">
             {/* Header */}
-            <div className="flex items-center gap-3 px-6 py-4 border-b border-border">
+            <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
                 <Button variant="ghost" size="icon" onClick={onCancel}>
                     <span className="material-symbols-outlined">arrow_back</span>
                 </Button>
@@ -88,7 +88,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
             </div>
 
             {/* Search */}
-            <div className="px-6 py-4 pb-2">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 pb-2">
                 <div className="relative">
                     <Input
                         type="text"
@@ -103,7 +103,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
 
             {/* Quick Access: Custom Endpoint */}
             {!searchQuery && (
-                <div className="px-6 pb-3">
+                <div className="px-4 sm:px-6 pb-3">
                     <button
                         onClick={() => onSelectType('custom')}
                         className="w-full flex items-center gap-4 p-3 rounded-xl border-2 border-dashed border-border hover:border-primary/50 hover:bg-accent transition-all group text-left"
@@ -123,7 +123,7 @@ const ConnectProviderView: React.FC<ConnectProviderViewProps> = ({ onSelectType,
             )}
 
             {/* List */}
-            <div className="flex-1 overflow-y-auto px-6 pb-6">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-6">
                 {filteredProviders ? (
                     <div className="space-y-1">
                         <div className="px-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">

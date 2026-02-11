@@ -37,11 +37,11 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
     <div className="group relative flex bg-card rounded-xl border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 overflow-hidden">
       {/* Left Color Bar */}
       <div
-        className="w-1.5 shrink-0 rounded-l-xl"
+        className="w-1 sm:w-1.5 shrink-0 rounded-l-xl"
         style={{ backgroundColor: config.color }}
       />
-      <div className="flex-1 p-5">
-        <div className="flex justify-between items-start mb-3">
+      <div className="flex-1 p-3 sm:p-5">
+        <div className="flex justify-between items-start mb-2 sm:mb-3">
           <div className="flex items-center gap-2">
             <span className="px-2 py-0.5 rounded text-xs font-medium bg-muted text-muted-foreground uppercase">
               {data.code}
@@ -50,7 +50,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
               {data.language}
             </span>
           </div>
-          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
             <button
               onClick={handleCopy}
               className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"

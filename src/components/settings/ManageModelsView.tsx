@@ -60,17 +60,17 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
     return (
         <div className="flex flex-col h-full bg-background">
             {/* Header */}
-            <div className="flex items-center justify-between pl-6 pr-14 py-4 border-b border-border">
+            <div className="flex items-center justify-between pl-4 sm:pl-6 pr-10 sm:pr-14 py-3 sm:py-4 border-b border-border">
                 <div>
-                    <h2 className="text-xl font-bold text-foreground tracking-tight">{t('settings.manageModels')}</h2>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <h2 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">{t('settings.manageModels')}</h2>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">
                         {t('settings.description')}
                     </p>
                 </div>
             </div>
 
             {/* Search */}
-            <div className="px-6 py-4 flex gap-3">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 flex flex-wrap gap-2 sm:gap-3">
                 <div className="relative flex-1">
                     <Input
                         type="text"
@@ -88,7 +88,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                     className="shrink-0"
                 >
                     <span className="material-symbols-outlined text-[18px]">add</span>
-                    {t('settings.connectProvider')}
+                    <span className="hidden sm:inline">{t('settings.connectProvider')}</span>
                 </Button>
                 <Button
                     onClick={onImportConfig}
@@ -111,14 +111,14 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
             </div>
 
             {/* List */}
-            <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-6">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-6 space-y-6">
                 {filteredProviders.map(provider => (
                     <div key={provider.id}>
                         <div className="flex items-center justify-between group mb-2">
                             <h3 className="text-sm font-bold text-foreground">
                                 {provider.name}
                             </h3>
-                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                                 <Button
                                     variant="ghost"
                                     size="icon"

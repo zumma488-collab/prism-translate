@@ -199,7 +199,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, currentS
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-2xl h-[90vh] sm:h-[600px] flex flex-col p-0 gap-0 overflow-hidden bg-white dark:bg-[#1a2632]">
+      <DialogContent className="sm:max-w-2xl h-full sm:h-[600px] flex flex-col p-0 gap-0 overflow-hidden bg-white dark:bg-[#1a2632] rounded-none sm:rounded-lg">
         <DialogTitle className="sr-only">
           {view === 'manage' && t('settings.manageModels')}
           {view === 'connect' && t('settings.connectProvider')}
