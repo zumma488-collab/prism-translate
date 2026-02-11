@@ -7,17 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.1] - 2026-02-11
 
+### CI/CD
+
+- **GitHub Pages**: Added workflow configuration for automated deployment to GitHub Pages.
+- **Build**: Configured build settings to support static site generation.
+
+### Documentation
+
+- **i18n**: Fully translated `README.zh.md` to Chinese for better accessibility.
+- **Updates**: Updated repository URLs and removed legacy links.
+- **Clarification**: Added notes about optional API keys for local models.
+
 ### Improved
 
 - **Mobile UX**: Enhanced navigation in Settings Modal. Pressing the back button on mobile now closes the modal or navigates back one level instead of closing the page.
 - **Robustness**: Improved error handling for encrypted settings. Corrupted data now triggers an automatic reset instead of crashing the app.
 - **UI**: Optimized dropdown positioning algorithm. Menus now automatically adjust to stay within the viewport, fixing overflow issues on small screens.
+- **Compatibility**: Improved compatibility for mobile browsers and non-secure contexts (HTTP).
 
 ### Fixed
 
 - Fixed an issue where the Settings Modal would flicker or close unexpectedly when switching views on mobile.
 - Fixed a potential crash loop caused by decryption failures in `localStorage`.
 - Fixed Model Selector dropdown overflowing off-screen on mobile devices.
+- Fixed dialog visibility issues on mobile devices.
 
 ## [0.1.0] - 2026-02-05
 
