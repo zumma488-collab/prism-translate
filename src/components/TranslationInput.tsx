@@ -152,7 +152,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                   trigger={
                     <button
                       disabled={status === AppStatus.LOADING}
-                      className={`px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium bg-background border border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all flex items-center gap-1.5 ${status === AppStatus.LOADING ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      className={`px-2 sm:px-3 py-1.5 rounded-lg text-sm font-medium bg-background border border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all flex items-center gap-1.5 cursor-pointer ${status === AppStatus.LOADING ? 'opacity-50 cursor-not-allowed' : ''}`}
                       title={t('translation.input.addLanguage')}
                     >
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>add</span>
@@ -173,7 +173,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                             toggleLanguage(lang);
                             setIsLanguageDropdownOpen(false);
                           }}
-                          className="w-full text-left px-3 py-1.5 text-sm hover:bg-muted transition-colors flex items-center gap-2"
+                          className="w-full text-left px-3 py-1.5 text-sm hover:bg-muted transition-colors flex items-center gap-2 cursor-pointer"
                         >
                           <span
                             className="size-2.5 rounded-full shrink-0"
@@ -192,7 +192,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
               <button
                 onClick={onTranslate}
                 disabled={status === AppStatus.LOADING || !inputText.trim() || targetLanguages.length === 0}
-                className={`flex items-center gap-1.5 sm:gap-2 bg-primary text-primary-foreground px-3 sm:px-4 py-1.5 rounded-lg text-sm font-medium transition-all transform active:scale-[0.98] ${(status === AppStatus.LOADING || !inputText.trim() || targetLanguages.length === 0) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary/90'}`}
+                className={`flex items-center gap-1.5 sm:gap-2 bg-primary text-primary-foreground px-3 sm:px-4 py-1.5 rounded-lg text-sm font-medium transition-all transform active:scale-[0.98] cursor-pointer ${(status === AppStatus.LOADING || !inputText.trim() || targetLanguages.length === 0) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary/90'}`}
                 title={targetLanguages.length === 0 ? t('translation.input.selectLanguageWarning') : t('translation.input.translateHotkey')}
               >
                 <span className={`material-symbols-outlined ${status === AppStatus.LOADING ? 'animate-spin' : ''}`} style={{ fontSize: '16px' }}>
@@ -226,7 +226,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                       trigger={
                         <button
                           disabled={status === AppStatus.LOADING}
-                          className="px-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white flex items-center justify-center rounded-sm ml-0.5 h-full"
+                          className="px-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white flex items-center justify-center rounded-sm ml-0.5 h-full cursor-pointer"
                           title={t('translation.input.selectModel', { lang })}
                         >
                           <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
@@ -239,7 +239,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                     <button
                       onClick={() => toggleLanguage(lang)}
                       disabled={status === AppStatus.LOADING}
-                      className={`px-1.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors h-full ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
+                      className={`px-1.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors h-full cursor-pointer ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
                       title={status === AppStatus.LOADING ? t('translation.input.cannotRemoveLanguage') : t('translation.input.removeLanguage', { lang })}
                     >
                       <span>{config?.nativeName || lang}</span>

@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({
             className="w-72 rounded-xl shadow-xl overflow-hidden py-2"
             trigger={
               <button
-                className="flex items-center gap-1.5 sm:gap-2 h-9 sm:h-10 px-2.5 sm:px-4 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-semibold min-w-0 sm:min-w-[160px] justify-between"
+                className="flex items-center gap-1.5 sm:gap-2 h-9 sm:h-10 px-2.5 sm:px-4 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-semibold min-w-0 sm:min-w-[160px] justify-between cursor-pointer"
                 title={t('header.changeModel')}
               >
                 <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
               <span>{t('header.selectModel')}</span>
               <button
                 onClick={handleManageClick}
-                className="text-primary hover:underline text-xs"
+                className="text-primary hover:underline text-xs cursor-pointer"
               >
                 {t('header.manage')}
               </button>
@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({
                 <button
                   key={item.uniqueId}
                   onClick={() => handleModelClick(item.uniqueId)}
-                  className={`w-full text-left px-4 py-3 text-sm flex flex-col justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b border-gray-50 dark:border-gray-800 last:border-0 ${activeModelKey === item.uniqueId ? 'bg-primary/5 dark:bg-primary/10' : ''}`}
+                  className={`w-full text-left px-4 py-3 text-sm flex flex-col justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b border-gray-50 dark:border-gray-800 last:border-0 cursor-pointer ${activeModelKey === item.uniqueId ? 'bg-primary/5 dark:bg-primary/10' : ''}`}
                 >
                   <div className="flex items-center justify-between w-full">
                     <span className={`font-medium ${activeModelKey === item.uniqueId ? 'text-primary' : 'text-gray-800 dark:text-gray-200'}`}>
@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenSettings}
-          className="flex items-center justify-center size-10 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300"
+          className="flex items-center justify-center size-10 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300 cursor-pointer"
           title={t('header.settings')}
         >
           <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>settings</span>

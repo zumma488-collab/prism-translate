@@ -36,7 +36,7 @@ const PortalDropdown: React.FC<PortalDropdownProps> = ({
     // Calculate dropdown position based on trigger rect and placement
     const updatePosition = useCallback(() => {
         if (!triggerRef.current || !dropdownRef.current) return;
-        
+
         const triggerRect = triggerRef.current.getBoundingClientRect();
         const dropdownRect = dropdownRef.current.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
@@ -64,7 +64,7 @@ const PortalDropdown: React.FC<PortalDropdownProps> = ({
         const PADDING = 10;
         // Convert back to viewport coordinates for check
         const viewportLeft = left - window.scrollX;
-        
+
         if (viewportLeft < PADDING) {
             left = PADDING + window.scrollX;
         } else if (viewportLeft + dropdownRect.width > viewportWidth - PADDING) {
@@ -85,7 +85,7 @@ const PortalDropdown: React.FC<PortalDropdownProps> = ({
 
         window.addEventListener('resize', updatePosition);
         window.addEventListener('scroll', updatePosition, true);
-        
+
         return () => {
             window.removeEventListener('resize', updatePosition);
             window.removeEventListener('scroll', updatePosition, true);
@@ -129,7 +129,7 @@ const PortalDropdown: React.FC<PortalDropdownProps> = ({
             <div
                 ref={triggerRef}
                 onClick={() => { if (!disabled) onOpenChange(!open); }}
-                className="inline-flex"
+                className={`inline-flex ${!disabled ? 'cursor-pointer' : ''}`}
             >
                 {trigger}
             </div>

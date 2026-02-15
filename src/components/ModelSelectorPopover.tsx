@@ -70,7 +70,7 @@ const ModelSelectorPopover: React.FC<ModelSelectorPopoverProps> = ({
                                     onSelect(null);
                                     setIsOpen(false);
                                 }}
-                                className="text-[10px] text-primary hover:underline"
+                                className="text-[10px] text-primary hover:underline cursor-pointer"
                             >
                                 Reset to Global
                             </button>
@@ -115,12 +115,12 @@ const ModelSelectorPopover: React.FC<ModelSelectorPopoverProps> = ({
                                                         onSelect(model.uniqueId);
                                                         setIsOpen(false);
                                                     }}
-                                                    className={`w-full text-left px-2 py-1.5 flex items-center gap-2 hover:bg-muted/50 rounded-sm transition-colors ${isSelected ? 'bg-primary/10 text-primary' : ''
+                                                    className={`w-full text-left px-2 py-1.5 flex items-center gap-2 hover:bg-muted/50 rounded-sm transition-colors cursor-pointer ${isSelected ? 'bg-primary/10 text-primary' : ''
                                                         }`}
                                                 >
                                                     <div className={`size-3 rounded-full border flex items-center justify-center shrink-0 ${isSelected || (isEffective && !currentModelId && isDefault)
-                                                            ? 'border-primary bg-primary'
-                                                            : 'border-muted-foreground/30'
+                                                        ? 'border-primary bg-primary'
+                                                        : 'border-muted-foreground/30'
                                                         }`}>
                                                         {(isSelected || (isEffective && !currentModelId && isDefault)) && (
                                                             <div className="size-1.5 bg-primary-foreground rounded-full" />

@@ -53,14 +53,14 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
           <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
             <button
               onClick={handleCopy}
-              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               title={t('translation.output.copy')}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>content_copy</span>
             </button>
             <button
               onClick={handleSpeak}
-              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               title={t('translation.output.listen')}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>volume_up</span>
@@ -87,7 +87,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
         {shouldEnableCollapse && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1 transition-colors"
+            className="mt-2 text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1 transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
               {isExpanded ? 'expand_less' : 'expand_more'}
