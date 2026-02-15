@@ -1,8 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGE_CONFIGS } from '../constants';
-import { AppStatus } from '../types';
+import { AppStatus, ProviderConfig } from '../types';
 import PortalDropdown from './ui/portal-dropdown';
+import ModelSelectorPopover from './ModelSelectorPopover';
+
+interface ModelOption {
+  uniqueId: string;
+  modelName: string;
+  providerName: string;
+  provider: ProviderConfig;
+}
 
 interface TranslationInputProps {
   inputText: string;
@@ -12,6 +20,10 @@ interface TranslationInputProps {
   onTranslate: () => void;
   status: AppStatus;
   autoFocus?: boolean;
+  availableModels: ModelOption[];
+  languageModels: Record<string, string>;
+  onLanguageModelChange: (lang: string, modelId: string | null) => void;
+  defaultModelId: string;
 }
 
 const TranslationInput: React.FC<TranslationInputProps> = ({
@@ -22,6 +34,10 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
   onTranslate,
   status,
   autoFocus = true,
+  availableModels,
+  languageModels,
+  onLanguageModelChange,
+  defaultModelId,
 }) => {
   const { t } = useTranslation();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -191,18 +207,55 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
           <div className="flex items-center flex-wrap gap-1.5">
             {targetLanguages.map(lang => {
               const config = LANGUAGE_CONFIGS[lang];
+              const currentModelId = languageModels[lang] || null;
+              const hasCustomModel = !!currentModelId;
+
               return (
-                <button
-                  key={lang}
-                  onClick={() => toggleLanguage(lang)}
-                  disabled={status === AppStatus.LOADING}
-                  className={`px-2 py-0.5 rounded-md text-xs font-medium transition-all whitespace-nowrap flex items-center gap-1 hover:opacity-80 ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
-                  style={{ backgroundColor: config?.color || '#64748b', color: '#fff' }}
-                  title={status === AppStatus.LOADING ? t('translation.input.cannotRemoveLanguage') : t('translation.input.removeLanguage', { lang })}
-                >
-                  <span>{config?.nativeName || lang}</span>
-                  <span className="material-symbols-outlined text-[10px] opacity-70">close</span>
-                </button>
+                <div key={lang} className="relative group">
+                  <div
+                    className={`flex items-center gap-0 rounded-md overflow-hidden transition-all ${hasCustomModel ? 'ring-1 ring-primary/50' : ''
+                      }`}
+                    style={{ backgroundColor: config?.color || '#64748b' }}
+                  >
+                    <ModelSelectorPopover
+                      language={config?.nativeName || lang}
+                      currentModelId={currentModelId}
+                      defaultModelId={defaultModelId}
+                      availableModels={availableModels}
+                      onSelect={(modelId) => onLanguageModelChange(lang, modelId)}
+                      trigger={
+                        <button
+                          disabled={status === AppStatus.LOADING}
+                          className="px-1.5 py-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white"
+                          title={t('translation.input.selectModel', { lang })}
+                        >
+                          <span className="material-symbols-outlined text-[14px]">
+                            {hasCustomModel ? 'settings_suggest' : 'settings'}
+                          </span>
+                        </button>
+                      }
+                    />
+
+                    <button
+                      onClick={() => toggleLanguage(lang)}
+                      disabled={status === AppStatus.LOADING}
+                      className={`px-1.5 py-0.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
+                      title={status === AppStatus.LOADING ? t('translation.input.cannotRemoveLanguage') : t('translation.input.removeLanguage', { lang })}
+                    >
+                      <span>{config?.nativeName || lang}</span>
+                      <span className="material-symbols-outlined text-[10px] opacity-70">close</span>
+                    </button>
+                  </div>
+
+                  {/* Tooltip for model info */}
+                  {hasCustomModel && (
+                    <div className="absolute bottom-full left-0 mb-1 hidden group-hover:block z-10 whitespace-nowrap">
+                      <div className="bg-popover text-popover-foreground text-[10px] px-2 py-1 rounded shadow border border-border">
+                        Using: {availableModels.find(m => m.uniqueId === currentModelId)?.modelName || 'Unknown'}
+                      </div>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>

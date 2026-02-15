@@ -14,7 +14,8 @@ const STORAGE_KEY_V2 = 'ai-translator-settings-v2';
 
 const EMPTY_INITIAL_SETTINGS: AppSettings = {
   activeModelKey: '',
-  providers: []
+  providers: [],
+  languageModels: {}
 };
 
 const App: React.FC = () => {
@@ -130,7 +131,7 @@ const App: React.FC = () => {
 
   // Use a derived list of enabled models for the dropdown
   const getEnabledModels = () => {
-    const allModels: { provider: ProviderConfig, modelId: string, modelName: string, uniqueId: string }[] = [];
+    const allModels: { provider: ProviderConfig, modelId: string, modelName: string, uniqueId: string, providerName: string }[] = [];
     settings.providers.forEach(p => {
       p.models.forEach(m => {
         if (m.enabled !== false) {
@@ -138,7 +139,8 @@ const App: React.FC = () => {
             provider: p,
             modelId: m.id,
             modelName: m.name,
-            uniqueId: `${p.id}:${m.id}`
+            uniqueId: `${p.id}:${m.id}`,
+            providerName: p.name
           });
         }
       });
@@ -154,8 +156,7 @@ const App: React.FC = () => {
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
 
-    const currentMeta = activeModelMeta();
-    if (!currentMeta) {
+    if (!activeModelMeta()) {
       setIsSettingsOpen(true);
       return;
     }
@@ -164,13 +165,46 @@ const App: React.FC = () => {
     setTranslations([]); // Clear previous
 
     try {
-      const results = await translateText({
-        text: inputText,
-        targetLanguages,
-        provider: currentMeta.provider,
-        modelId: currentMeta.modelId
+      // Group target languages by model (global vs custom)
+      const modelGroups = new Map<string, string[]>();
+
+      targetLanguages.forEach(lang => {
+        // Use custom model for this language if available, otherwise use global default
+        const modelKey = settings.languageModels?.[lang] || settings.activeModelKey;
+        if (!modelGroups.has(modelKey)) {
+          modelGroups.set(modelKey, []);
+        }
+        modelGroups.get(modelKey)?.push(lang);
       });
-      setTranslations(results);
+
+      // Execute translations in parallel for each model group
+      const promises = Array.from(modelGroups.entries()).map(async ([modelKey, languages]) => {
+        const allModels = getEnabledModels();
+        // Parse providerId:modelId
+        const meta = allModels.find(m => m.uniqueId === modelKey);
+
+        if (!meta) {
+          console.warn(`Model not found for key: ${modelKey}, skipping languages: ${languages.join(', ')}`);
+          return [];
+        }
+
+        return await translateText({
+          text: inputText,
+          targetLanguages: languages,
+          provider: meta.provider,
+          modelId: meta.modelId
+        });
+      });
+
+      const resultsArrays = await Promise.all(promises);
+      const allResults = resultsArrays.flat();
+
+      // Sort results to match the order of targetLanguages
+      const sortedResults = allResults.sort((a, b) => {
+        return targetLanguages.indexOf(a.language) - targetLanguages.indexOf(b.language);
+      });
+
+      setTranslations(sortedResults);
       setStatus(AppStatus.SUCCESS);
     } catch (error) {
       console.error(error);
@@ -210,6 +244,18 @@ const App: React.FC = () => {
     setSettings(prev => ({ ...prev, activeModelKey: uniqueId }));
   };
 
+  const handleLanguageModelChange = (lang: string, modelUniqueId: string | null) => {
+    setSettings(prev => {
+      const newLanguageModels = { ...prev.languageModels };
+      if (modelUniqueId) {
+        newLanguageModels[lang] = modelUniqueId;
+      } else {
+        delete newLanguageModels[lang];
+      }
+      return { ...prev, languageModels: newLanguageModels };
+    });
+  };
+
   const enabledModels = getEnabledModels();
   const currentModel = activeModelMeta();
 
@@ -235,6 +281,10 @@ const App: React.FC = () => {
             onLanguagesChange={setTargetLanguages}
             onTranslate={handleTranslate}
             status={status}
+            availableModels={enabledModels}
+            languageModels={settings.languageModels || {}}
+            onLanguageModelChange={handleLanguageModelChange}
+            defaultModelId={settings.activeModelKey}
           />
 
           {/* RIGHT: Output Area */}
