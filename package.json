@@ -1,6 +1,6 @@
 {
   "name": "ai-translator-dashboard",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A modern AI-powered translation dashboard built with React 19, TypeScript, and Vercel AI SDK.",
   "author": "zumma488",
   "license": "MIT",

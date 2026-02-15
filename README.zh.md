@@ -1,3 +1,5 @@
+# AI 翻译仪表盘
+
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
@@ -10,6 +12,8 @@
 <p align="center">
   <b>简体中文</b> | <a href="./README.md">English</a>
 </p>
+
+一款基于 React 19、TypeScript 和 Vercel AI SDK 构建的现代化 AI 翻译仪表盘。本项目集成了多个 AI 提供商（Google Gemini、OpenAI 等），在简洁流畅的界面中提供高质量的翻译服务。
 
 <p align="center">
   <a href="https://zumma488.github.io/prism-translate/"><b>在线演示</b></a>
@@ -33,6 +37,15 @@
 | :------------------------------------------: | :----------------------------------------: | :--------------------------------------: |
 | ![Connect](docs/images/connect-provider.png) | ![Custom](docs/images/custom-provider.png) | ![Manage](docs/images/manage-models.png) |
 
+## ✨ 功能特性 (Features)
+
+- **每语言独立模型选择**: 为每种目标语言独立定制 AI 模型，优化不同语言对的翻译质量
+- **多模型支持**: 通过 Vercel AI SDK 无缝切换 Google Gemini、OpenAI 等多种 AI 提供商
+- **现代化 UI/UX**: 使用 `shadcn/ui` 和 Tailwind CSS v4 打造高端响应式设计
+- **微动画效果**: 通过 `tw-animate-css` 提升用户体验
+- **Serverless 就绪**: 针对 Vercel Serverless Functions 优化部署
+- **类型安全**: 完整的 TypeScript 支持，确保开发稳健性
+
 ## 技术栈 (Tech Stack)
 
 - **框架**: React 19 + TypeScript + Vite
@@ -52,12 +65,59 @@
 | `ai-sdk`             | Vercel AI SDK 使用指南            |
 | `ui-ux-pro-max`      | UI/UX 设计规范和最佳实践          |
 
-## 本地运行
+## 🚀 快速开始
 
-**先决条件**: Node.js (v18 或更高版本)
+### 先决条件
 
-1. 安装依赖:
-   `npm install`
-2. (可选) 如果使用云端提供商，请在 [.env.local](.env.local) 中设置 `GEMINI_API_KEY`。对于本地模型 (Ollama)，此步骤可跳过。
-3. 运行应用:
-   `npm run dev`
+- Node.js (v18 或更高版本)
+- npm 或 pnpm
+
+### 安装步骤
+
+1. 克隆仓库：
+
+   ```bash
+   git clone https://github.com/zumma488/prism-translate.git
+   cd prism-translate
+   ```
+
+2. 安装依赖：
+
+   ```bash
+   npm install
+   ```
+
+3. 配置环境变量（可选）：
+   如果你计划使用云端提供商（Google Gemini、OpenAI 等），请将 `.env.example` 复制为 `.env.local`。
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   添加你的 API 密钥：
+
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   # 根据需要添加其他提供商的密钥
+   ```
+
+   > **注意**：对于本地模型（如 Ollama），不需要 API 密钥。
+
+4. 运行开发服务器：
+   ```bash
+   npm run dev
+   ```
+
+## 🤝 贡献
+
+欢迎贡献！请阅读我们的[贡献指南](CONTRIBUTING.md)和[行为准则](CODE_OF_CONDUCT.md)了解详情。
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件。
+
+## 👥 作者
+
+**zumma488**
+
+- GitHub: [@zumma488](https://github.com/zumma488)
