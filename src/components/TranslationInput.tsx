@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LANGUAGE_CONFIGS } from '../constants'
 import { AppStatus, ProviderConfig } from '../types'
 import ModelSelectorPopover from './ModelSelectorPopover'
+import LanguageTag from './LanguageTag'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import {
@@ -18,7 +19,6 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command'
-import { cn } from '@/lib/utils'
 
 interface ModelOption {
   uniqueId: string
@@ -285,77 +285,18 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
 
           {/* Row 2: Target Languages */}
           <div className="flex items-center flex-wrap gap-1.5">
-            {targetLanguages.map((lang) => {
-              const config = LANGUAGE_CONFIGS[lang]
-              const currentModelId = languageModels[lang] || null
-              const hasCustomModel = !!currentModelId
-
-              return (
-                <div key={lang} className="relative group">
-                  <div
-                    className={`flex items-center gap-0 rounded-md overflow-hidden transition-all h-7 ${hasCustomModel ? 'ring-1 ring-primary/50' : ''
-                      }`}
-                    style={{ backgroundColor: config?.color || '#64748b' }}
-                  >
-                    <ModelSelectorPopover
-                      language={config?.nativeName || lang}
-                      currentModelId={currentModelId}
-                      defaultModelId={defaultModelId}
-                      availableModels={availableModels}
-                      onSelect={(modelId) =>
-                        onLanguageModelChange(lang, modelId)
-                      }
-                      trigger={
-                        <button
-                          disabled={status === AppStatus.LOADING}
-                          className="px-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white flex items-center justify-center rounded-sm ml-0.5 h-full cursor-pointer"
-                          title={t('translation.input.selectModel', { lang })}
-                        >
-                          <span
-                            className="material-symbols-outlined"
-                            style={{ fontSize: '16px' }}
-                          >
-                            {hasCustomModel ? 'settings_suggest' : 'settings'}
-                          </span>
-                        </button>
-                      }
-                    />
-
-                    <button
-                      onClick={() => toggleLanguage(lang)}
-                      disabled={status === AppStatus.LOADING}
-                      className={`px-1.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors h-full cursor-pointer ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''
-                        }`}
-                      title={
-                        status === AppStatus.LOADING
-                          ? t('translation.input.cannotRemoveLanguage')
-                          : t('translation.input.removeLanguage', { lang })
-                      }
-                    >
-                      <span>{config?.nativeName || lang}</span>
-                      <span
-                        className="material-symbols-outlined opacity-70"
-                        style={{ fontSize: '16px' }}
-                      >
-                        close
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Tooltip for model info */}
-                  {hasCustomModel && (
-                    <div className="absolute bottom-full left-0 mb-1 hidden group-hover:block z-10 whitespace-nowrap">
-                      <div className="bg-popover text-popover-foreground text-[10px] px-2 py-1 rounded shadow border border-border">
-                        Using:{' '}
-                        {availableModels.find(
-                          (m) => m.uniqueId === currentModelId
-                        )?.modelName || 'Unknown'}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
+            {targetLanguages.map((lang) => (
+              <LanguageTag
+                key={lang}
+                language={lang}
+                currentModelId={languageModels[lang] || null}
+                defaultModelId={defaultModelId}
+                availableModels={availableModels}
+                status={status}
+                onRemove={() => toggleLanguage(lang)}
+                onModelChange={(modelId) => onLanguageModelChange(lang, modelId)}
+              />
+            ))}
           </div>
         </div>
       </div>
