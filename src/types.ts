@@ -6,6 +6,7 @@ export interface TranslationResult {
   confidence: number;
   modelName?: string;
   providerName?: string;
+  error?: string;
 }
 
 export type ModelProvider =

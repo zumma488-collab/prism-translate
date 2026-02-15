@@ -204,7 +204,23 @@ const App: React.FC = () => {
           }
         } catch (err) {
           console.error(`Translation failed for ${lang}:`, err);
-          // Individual language failure doesn't block others
+          // Show error to user as a failed translation card
+          const errorResult: TranslationResult = {
+            language: lang,
+            code: '',
+            text: '',
+            tone: '',
+            confidence: 0,
+            modelName: meta.modelName,
+            providerName: meta.providerName || meta.provider.name,
+            error: err instanceof Error ? err.message : String(err),
+          };
+          setTranslations(prev => {
+            const newResults = [...prev, errorResult];
+            return newResults.sort((a, b) =>
+              targetLanguages.indexOf(a.language) - targetLanguages.indexOf(b.language)
+            );
+          });
         }
 
         return null;

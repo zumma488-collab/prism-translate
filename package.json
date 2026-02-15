@@ -62,7 +62,8 @@
     "react-i18next": "^16.5.4",
     "tailwind-merge": "^3.4.0",
     "workers-ai-provider": "^3.0.4",
-    "zhipu-ai-provider": "^0.2.2"
+    "zhipu-ai-provider": "^0.2.2",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

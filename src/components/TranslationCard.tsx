@@ -108,39 +108,54 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
           </div>
         </div>
 
-        {/* Text Content with Collapse Logic */}
-        <div className="relative">
-          <p
-            className={`text-base leading-relaxed text-foreground whitespace-pre-wrap ${isCollapsed ? 'line-clamp-6' : ''
-              }`}
-          >
-            {data.text}
-          </p>
-
-          {/* Gradient Overlay when collapsed */}
-          {isCollapsed && (
-            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-card to-transparent pointer-events-none" />
-          )}
-        </div>
-
-        {/* Expand/Collapse Button */}
-        {shouldEnableCollapse && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 text-primary hover:text-primary/80 h-auto p-0 hover:bg-transparent font-medium flex items-center gap-1 transition-colors"
-          >
-            <span
-              className="material-symbols-outlined"
-              style={{ fontSize: '16px' }}
-            >
-              {isExpanded ? 'expand_less' : 'expand_more'}
+        {/* Error State */}
+        {data.error ? (
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+            <span className="material-symbols-outlined text-destructive shrink-0" style={{ fontSize: '20px' }}>
+              error
             </span>
-            {isExpanded
-              ? t('translation.output.showLess')
-              : t('translation.output.showMore')}
-          </Button>
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-destructive">{t('translation.output.error', 'Translation Failed')}</p>
+              <p className="text-xs text-destructive/80 mt-1 break-all">{data.error}</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Text Content with Collapse Logic */}
+            <div className="relative">
+              <p
+                className={`text-base leading-relaxed text-foreground whitespace-pre-wrap ${isCollapsed ? 'line-clamp-6' : ''
+                  }`}
+              >
+                {data.text}
+              </p>
+
+              {/* Gradient Overlay when collapsed */}
+              {isCollapsed && (
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-card to-transparent pointer-events-none" />
+              )}
+            </div>
+
+            {/* Expand/Collapse Button */}
+            {shouldEnableCollapse && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-2 text-primary hover:text-primary/80 h-auto p-0 hover:bg-transparent font-medium flex items-center gap-1 transition-colors"
+              >
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: '16px' }}
+                >
+                  {isExpanded ? 'expand_less' : 'expand_more'}
+                </span>
+                {isExpanded
+                  ? t('translation.output.showLess')
+                  : t('translation.output.showMore')}
+              </Button>
+            )}
+          </>
         )}
 
         {(data.tone || data.confidence || data.modelName) && (
