@@ -188,12 +188,19 @@ const App: React.FC = () => {
           return [];
         }
 
-        return await translateText({
+        const results = await translateText({
           text: inputText,
           targetLanguages: languages,
           provider: meta.provider,
           modelId: meta.modelId
         });
+
+        // Inject model info into results
+        return results.map(r => ({
+          ...r,
+          modelName: meta.modelName,
+          providerName: meta.providerName || meta.provider.name
+        }));
       });
 
       const resultsArrays = await Promise.all(promises);

@@ -213,7 +213,7 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
               return (
                 <div key={lang} className="relative group">
                   <div
-                    className={`flex items-center gap-0 rounded-md overflow-hidden transition-all ${hasCustomModel ? 'ring-1 ring-primary/50' : ''
+                    className={`flex items-center gap-0 rounded-md overflow-hidden transition-all h-7 ${hasCustomModel ? 'ring-1 ring-primary/50' : ''
                       }`}
                     style={{ backgroundColor: config?.color || '#64748b' }}
                   >
@@ -226,10 +226,10 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                       trigger={
                         <button
                           disabled={status === AppStatus.LOADING}
-                          className="px-1.5 py-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white"
+                          className="px-0.5 hover:bg-black/10 transition-colors text-white/90 hover:text-white flex items-center justify-center rounded-sm ml-0.5 h-full"
                           title={t('translation.input.selectModel', { lang })}
                         >
-                          <span className="material-symbols-outlined text-[14px]">
+                          <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
                             {hasCustomModel ? 'settings_suggest' : 'settings'}
                           </span>
                         </button>
@@ -239,11 +239,11 @@ const TranslationInput: React.FC<TranslationInputProps> = ({
                     <button
                       onClick={() => toggleLanguage(lang)}
                       disabled={status === AppStatus.LOADING}
-                      className={`px-1.5 py-0.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
+                      className={`px-1.5 text-xs font-medium text-white flex items-center gap-1 hover:bg-black/10 transition-colors h-full ${status === AppStatus.LOADING ? 'cursor-not-allowed' : ''}`}
                       title={status === AppStatus.LOADING ? t('translation.input.cannotRemoveLanguage') : t('translation.input.removeLanguage', { lang })}
                     >
                       <span>{config?.nativeName || lang}</span>
-                      <span className="material-symbols-outlined text-[10px] opacity-70">close</span>
+                      <span className="material-symbols-outlined opacity-70" style={{ fontSize: '16px' }}>close</span>
                     </button>
                   </div>
 

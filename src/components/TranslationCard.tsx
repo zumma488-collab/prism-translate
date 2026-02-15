@@ -96,8 +96,16 @@ const TranslationCard: React.FC<TranslationCardProps> = ({ data, config, totalLa
           </button>
         )}
 
-        {(data.tone || data.confidence) && (
-          <div className="mt-3 flex gap-2">
+        {(data.tone || data.confidence || data.modelName) && (
+          <div className="mt-3 flex gap-2 items-center flex-wrap">
+            {data.modelName && (
+              <div
+                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted text-muted-foreground"
+                title={data.providerName ? `Provider: ${data.providerName}` : undefined}
+              >
+                {data.modelName}
+              </div>
+            )}
             {data.tone && (
               <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted text-muted-foreground">
                 {data.tone}

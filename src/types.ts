@@ -4,6 +4,8 @@ export interface TranslationResult {
   text: string;
   tone: string;
   confidence: number;
+  modelName?: string;
+  providerName?: string;
 }
 
 export type ModelProvider =
