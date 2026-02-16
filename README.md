@@ -21,11 +21,13 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
 
 ## ✨ Features
 
+- **Per-Language Model Selection**: Customize AI models for each target language independently, optimizing translation quality for different language pairs.
 - **Multi-Model Support**: Seamlessly switch between Google Gemini, OpenAI, and other providers via Vercel AI SDK.
 - **Modern UI/UX**: Built with `shadcn/ui` and Tailwind CSS v4 for a premium, responsive design.
 - **Micro-Animations**: Enhanced user experience with `tw-animate-css`.
 - **Serverless Ready**: Optimized for deployment on Vercel Serverless Functions.
 - **Type-Safe**: Full TypeScript support for robust development.
+
 
 ## 📸 Screenshots
 
@@ -52,6 +54,17 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
 - **Components**: shadcn/ui
 - **AI Integration**: Vercel AI SDK + Google Gemini + OpenAI
 - **Deployment**: Vercel
+
+### AI Skills Reference
+
+The following AI Skills were used during development (general configuration, no need to sync with project):
+
+| Skill                | Purpose                                    |
+| -------------------- | ------------------------------------------ |
+| `shadcn-ui`          | shadcn/ui component library installation and usage guide |
+| `tailwind-v4-shadcn` | Tailwind v4 and shadcn/ui integration configuration |
+| `ai-sdk`             | Vercel AI SDK usage guide                  |
+| `ui-ux-pro-max`      | UI/UX design specifications and best practices |
 
 ## 🚀 Getting Started
 

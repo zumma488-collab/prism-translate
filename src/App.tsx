@@ -14,7 +14,8 @@ const STORAGE_KEY_V2 = 'ai-translator-settings-v2';
 
 const EMPTY_INITIAL_SETTINGS: AppSettings = {
   activeModelKey: '',
-  providers: []
+  providers: [],
+  languageModels: {}
 };
 
 const App: React.FC = () => {
@@ -130,7 +131,7 @@ const App: React.FC = () => {
 
   // Use a derived list of enabled models for the dropdown
   const getEnabledModels = () => {
-    const allModels: { provider: ProviderConfig, modelId: string, modelName: string, uniqueId: string }[] = [];
+    const allModels: { provider: ProviderConfig, modelId: string, modelName: string, uniqueId: string, providerName: string }[] = [];
     settings.providers.forEach(p => {
       p.models.forEach(m => {
         if (m.enabled !== false) {
@@ -138,7 +139,8 @@ const App: React.FC = () => {
             provider: p,
             modelId: m.id,
             modelName: m.name,
-            uniqueId: `${p.id}:${m.id}`
+            uniqueId: `${p.id}:${m.id}`,
+            providerName: p.name
           });
         }
       });
@@ -154,8 +156,7 @@ const App: React.FC = () => {
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
 
-    const currentMeta = activeModelMeta();
-    if (!currentMeta) {
+    if (!activeModelMeta()) {
       setIsSettingsOpen(true);
       return;
     }
@@ -164,13 +165,69 @@ const App: React.FC = () => {
     setTranslations([]); // Clear previous
 
     try {
-      const results = await translateText({
-        text: inputText,
-        targetLanguages,
-        provider: currentMeta.provider,
-        modelId: currentMeta.modelId
+      // Create independent translation tasks for each language
+      const translationTasks = targetLanguages.map(async (lang) => {
+        const modelKey = settings.languageModels?.[lang] || settings.activeModelKey;
+        const allModels = getEnabledModels();
+        const meta = allModels.find(m => m.uniqueId === modelKey);
+
+        if (!meta) {
+          console.warn(`Model not found for key: ${modelKey}, skipping language: ${lang}`);
+          return null;
+        }
+
+        try {
+          const results = await translateText({
+            text: inputText,
+            targetLanguages: [lang], // Single language per request
+            provider: meta.provider,
+            modelId: meta.modelId
+          });
+
+          const result = results[0];
+          if (result) {
+            const enrichedResult = {
+              ...result,
+              modelName: meta.modelName,
+              providerName: meta.providerName || meta.provider.name
+            };
+
+            // Progressive update - append result immediately
+            setTranslations(prev => {
+              const newResults = [...prev, enrichedResult];
+              return newResults.sort((a, b) =>
+                targetLanguages.indexOf(a.language) - targetLanguages.indexOf(b.language)
+              );
+            });
+
+            return enrichedResult;
+          }
+        } catch (err) {
+          console.error(`Translation failed for ${lang}:`, err);
+          // Show error to user as a failed translation card
+          const errorResult: TranslationResult = {
+            language: lang,
+            code: '',
+            text: '',
+            tone: '',
+            confidence: 0,
+            modelName: meta.modelName,
+            providerName: meta.providerName || meta.provider.name,
+            error: err instanceof Error ? err.message : String(err),
+          };
+          setTranslations(prev => {
+            const newResults = [...prev, errorResult];
+            return newResults.sort((a, b) =>
+              targetLanguages.indexOf(a.language) - targetLanguages.indexOf(b.language)
+            );
+          });
+        }
+
+        return null;
       });
-      setTranslations(results);
+
+      // Wait for all translations to settle
+      await Promise.all(translationTasks);
       setStatus(AppStatus.SUCCESS);
     } catch (error) {
       console.error(error);
@@ -210,6 +267,18 @@ const App: React.FC = () => {
     setSettings(prev => ({ ...prev, activeModelKey: uniqueId }));
   };
 
+  const handleLanguageModelChange = (lang: string, modelUniqueId: string | null) => {
+    setSettings(prev => {
+      const newLanguageModels = { ...prev.languageModels };
+      if (modelUniqueId) {
+        newLanguageModels[lang] = modelUniqueId;
+      } else {
+        delete newLanguageModels[lang];
+      }
+      return { ...prev, languageModels: newLanguageModels };
+    });
+  };
+
   const enabledModels = getEnabledModels();
   const currentModel = activeModelMeta();
 
@@ -235,6 +304,10 @@ const App: React.FC = () => {
             onLanguagesChange={setTargetLanguages}
             onTranslate={handleTranslate}
             status={status}
+            availableModels={enabledModels}
+            languageModels={settings.languageModels || {}}
+            onLanguageModelChange={handleLanguageModelChange}
+            defaultModelId={settings.activeModelKey}
           />
 
           {/* RIGHT: Output Area */}
@@ -262,11 +335,11 @@ const App: React.FC = () => {
 
 
 
-              {/* Placeholder skeletons while loading */}
-              {status === AppStatus.LOADING && (
+              {/* Placeholder skeletons for remaining translations */}
+              {status === AppStatus.LOADING && targetLanguages.length > translations.length && (
                 <>
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="bg-card rounded-xl p-3 sm:p-5 border border-border animate-pulse">
+                  {Array.from({ length: targetLanguages.length - translations.length }).map((_, i) => (
+                    <div key={`skeleton-${i}`} className="bg-card rounded-xl p-3 sm:p-5 border border-border animate-pulse">
                       <div className="h-4 w-20 bg-muted rounded mb-3"></div>
                       <div className="h-5 w-3/4 bg-muted rounded mb-2"></div>
                       <div className="h-5 w-1/2 bg-muted rounded"></div>

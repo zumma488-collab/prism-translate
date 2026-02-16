@@ -67,7 +67,17 @@
       "updateProvider": "Update Provider",
       "nameRequired": "Provider name is required",
       "noModelsAdded": "No models added yet.",
-      "configureProviderHint": "Configure custom provider settings."
+      "configureProviderHint": "Configure custom provider settings.",
+      "fetchModels": "Get from /models",
+      "fetching": "Fetching models...",
+      "selectModels": "Select Models",
+      "selectModelsDescription": "Select models to add to your provider configuration.",
+      "addSelected": "Add Selected",
+      "selectAll": "Select All",
+      "fetchError": "Failed to fetch models: {{error}}",
+      "noModelsFoundFromApi": "No models found from API.",
+      "invalidResponse": "Invalid response format",
+      "selectedCount": "{{count}} selected"
     },
     "provider": {
       "searchPlaceholder": "Search providers...",

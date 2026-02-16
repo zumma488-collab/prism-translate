@@ -17,6 +17,7 @@ import { createZhipu } from 'zhipu-ai-provider';
 import { createWorkersAI } from 'workers-ai-provider';
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 
+
 import { TranslationResult, ProviderConfig } from '../types';
 
 export interface LLMRequest {
@@ -46,8 +47,8 @@ Return the response strictly as a JSON array with this schema:
 ]
 `;
 
-// Cache for API format detection results
-const apiFormatCache = new Map<string, 'chat' | 'responses'>();
+// Request timeout: default 30 minutes, configurable via VITE_REQUEST_TIMEOUT_MS in .env
+const REQUEST_TIMEOUT_MS = Number(import.meta.env.VITE_REQUEST_TIMEOUT_MS) || 30 * 60 * 1000;
 
 export const translateText = async (request: LLMRequest): Promise<TranslationResult[]> => {
     const { text, targetLanguages, provider, modelId } = request;
@@ -57,99 +58,36 @@ export const translateText = async (request: LLMRequest): Promise<TranslationRes
     }
 
     const userPrompt = `Translate this text: "${text}" into these languages: ${targetLanguages.join(", ")}.`;
+    const model = createModel(provider, modelId);
 
-    // For custom/openai providers, try with auto-detection
-    if (provider.type === 'custom' || provider.type === 'openai') {
-        return translateWithAutoDetect(provider, modelId, userPrompt);
-    }
-
-    // For native SDK providers, use direct call
     try {
-        const model = createModel(provider, modelId);
-
         const { text: responseText } = await generateText({
             model,
             system: SYSTEM_PROMPT,
             prompt: userPrompt,
+            abortSignal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
         });
 
         if (!responseText) {
             throw new Error("No response from AI model");
         }
 
-        const cleanContent = responseText.replace(/```json\n?|\n?```/g, '').trim();
-        return JSON.parse(cleanContent) as TranslationResult[];
+        const cleaned = responseText
+            .replace(/<think>[\s\S]*?<\/think>/g, '')
+            .trim();
+
+        const startIdx = cleaned.indexOf('[');
+        const endIdx = cleaned.lastIndexOf(']');
+        if (startIdx === -1 || endIdx === -1) {
+            throw new Error("Could not extract JSON from AI response");
+        }
+        return JSON.parse(cleaned.substring(startIdx, endIdx + 1)) as TranslationResult[];
 
     } catch (error) {
         console.error("Translation Error:", error);
         throw error;
     }
 };
-
-/**
- * Auto-detect API format and translate with fallback
- * Priority: chat (most compatible) → responses (OpenAI native)
- */
-async function translateWithAutoDetect(
-    provider: ProviderConfig,
-    modelId: string,
-    userPrompt: string
-): Promise<TranslationResult[]> {
-    const cacheKey = `${provider.baseUrl || 'openai'}:${provider.id}`;
-    const cachedFormat = apiFormatCache.get(cacheKey);
-
-    const openai = createOpenAI({
-        apiKey: provider.apiKey,
-        baseURL: provider.baseUrl || 'https://api.openai.com/v1',
-    });
-
-    const tryGenerate = async (format: 'chat' | 'responses') => {
-        const model = format === 'chat' ? openai.chat(modelId) : openai(modelId);
-
-        const { text: responseText } = await generateText({
-            model,
-            system: SYSTEM_PROMPT,
-            prompt: userPrompt,
-        });
-
-        if (!responseText) {
-            throw new Error("No response from AI model");
-        }
-
-        // Cache successful format
-        apiFormatCache.set(cacheKey, format);
-
-
-        const cleanContent = responseText.replace(/```json\n?|\n?```/g, '').trim();
-        return JSON.parse(cleanContent) as TranslationResult[];
-    };
-
-    // If we have a cached format, try it first
-    if (cachedFormat) {
-        try {
-            return await tryGenerate(cachedFormat);
-        } catch (error) {
-            // Cache might be stale, clear and retry with detection
-            apiFormatCache.delete(cacheKey);
-        }
-    }
-
-    // Try chat first (most compatible with third-party APIs)
-    try {
-        return await tryGenerate('chat');
-    } catch (chatError) {
-
-
-        // Fallback to responses API
-        try {
-            return await tryGenerate('responses');
-        } catch (responsesError) {
-            // Both failed, throw the original chat error (more likely to be the real issue)
-            console.error('[API Format] All formats failed');
-            throw chatError;
-        }
-    }
-}
 
 function createModel(provider: ProviderConfig, modelId: string): LanguageModel {
     switch (provider.type) {

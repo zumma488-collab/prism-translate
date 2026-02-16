@@ -113,8 +113,8 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
             {/* List */}
             <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-6 space-y-6">
                 {filteredProviders.map(provider => (
-                    <div key={provider.id}>
-                        <div className="flex items-center justify-between group mb-2">
+                    <div key={provider.id} className="group">
+                        <div className="flex items-center justify-between mb-2">
                             <h3 className="text-sm font-bold text-foreground">
                                 {provider.name}
                             </h3>
@@ -126,7 +126,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                                     className="size-7 hover:bg-muted"
                                     title={t('settings.editProvider')}
                                 >
-                                    <span className="material-symbols-outlined text-[16px]">edit</span>
+                                    <span className="material-symbols-outlined !text-[18px]">edit</span>
                                 </Button>
                                 <Button
                                     variant="ghost"
@@ -135,7 +135,7 @@ const ManageModelsView: React.FC<ManageModelsViewProps> = ({
                                     className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
                                     title={t('settings.deleteProvider')}
                                 >
-                                    <span className="material-symbols-outlined text-[16px]">delete</span>
+                                    <span className="material-symbols-outlined !text-[18px]">delete</span>
                                 </Button>
                             </div>
                         </div>

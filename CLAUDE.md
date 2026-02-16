@@ -38,6 +38,35 @@ Settings are stored encrypted in localStorage using Web Crypto API:
 - **Encryption**: `src/services/crypto.ts` handles encrypt/decrypt using AES-GCM
 - **Migration**: Automatic v2→v3 migration (plaintext to encrypted) on first load
 
+### Per-Language Model Customization (v0.2.0+)
+
+The app supports selecting different AI models for each target language:
+
+- **Settings Storage**: `AppSettings.languageModels` - `Record<string, string>`
+  - Key: Language name (e.g., "Spanish", "Japanese")
+  - Value: Model unique ID in format `${providerId}:${modelId}`
+  - If not set for a language, uses global `activeModelKey`
+
+- **Translation Flow**:
+  1. Groups target languages by their assigned models
+  2. Executes parallel translation requests for each model group
+  3. Merges and sorts results to match original language order
+
+- **UI Components**:
+  - `ModelSelectorPopover.tsx`: Per-language model selection popover
+  - Integrated into `TranslationInput.tsx` language chips
+  - Model info displayed on `TranslationCard.tsx`
+
+- **Data Flow**:
+  ```typescript
+  // In App.tsx handleTranslate()
+  const modelGroups = new Map<string, string[]>();
+  targetLanguages.forEach(lang => {
+    const modelKey = settings.languageModels?.[lang] || settings.activeModelKey;
+    modelGroups.get(modelKey)?.push(lang);
+  });
+  ```
+
 ### LLM Service Architecture
 
 `src/services/llmService.ts` handles all AI provider integrations:
@@ -56,16 +85,32 @@ Settings are stored encrypted in localStorage using Web Crypto API:
    - Uses system prompt requesting JSON response format
    - Returns `TranslationResult[]` with language, code, text, tone, confidence
 
+4. **Progressive Display** (v0.2.0+):
+   - Each language is translated independently (single-language requests)
+   - Results appear incrementally as each translation completes
+   - Skeleton loaders dynamically adjust based on remaining translations
+   - Individual language failures don't block other translations
+
 ### Component Structure
 
+**Main Components:**
 - `App.tsx`: Main app component with state management and settings persistence
-- `components/Header.tsx`: Top bar with model selector and settings button
-- `components/TranslationInput.tsx`: Left panel for input text and language selection
-- `components/TranslationCard.tsx`: Right panel output cards for each translation
+- `components/Header.tsx`: Top bar with global model selector and settings button
+- `components/TranslationInput.tsx`: Left panel for input text and language selection with per-language model chips
+- `components/TranslationCard.tsx`: Right panel output cards showing translations with model info
 - `components/SettingsModal.tsx`: Settings dialog with provider management
+- `components/LanguageSwitcher.tsx`: Language selection dropdown (shadcn/ui based)
+- `components/ModelSelectorPopover.tsx`: **[NEW v0.2.0]** Per-language model selection popover
+
+**Settings Sub-Views:**
 - `components/settings/ConnectProviderView.tsx`: Add new provider wizard
 - `components/settings/EditProviderView.tsx`: Edit provider config and API keys
 - `components/settings/ManageModelsView.tsx`: Enable/disable models per provider
+
+**UI Components (shadcn/ui):**
+- 17 shadcn/ui components in `components/ui/` including:
+  - Command, Popover, Dialog, Sheet, Tabs, Select, Dropdown Menu
+  - Button, Input, Label, Card, Separator, Skeleton, Switch, Textarea, Tooltip, Scroll Area
 
 ### Type System
 
@@ -73,8 +118,11 @@ Settings are stored encrypted in localStorage using Web Crypto API:
 
 - `ProviderConfig`: Provider instance with id, type, apiKey, baseUrl, models[]
 - `ModelDefinition`: Individual model with id, name, enabled flag
-- `AppSettings`: Top-level settings with providers[] and activeModelKey
-- `TranslationResult`: Translation output with language, code, text, tone, confidence
+- `AppSettings`: Top-level settings with:
+  - `providers[]`: Array of ProviderConfig instances
+  - `activeModelKey`: Global default model (format: `${providerId}:${modelId}`)
+  - `languageModels?`: **[NEW v0.2.0]** Per-language model overrides (Record<string, string>)
+- `TranslationResult`: Translation output with language, code, text, tone, confidence, modelName, providerName
 - `ModelProvider`: Union type of all supported provider types
 
 ## Important Implementation Notes
@@ -99,6 +147,21 @@ Settings are stored encrypted in localStorage using Web Crypto API:
 - `activeModelMeta()`: Finds currently active model from activeModelKey
 - If active model becomes invalid (disabled/deleted), auto-select first enabled model
 
+### Using Per-Language Models (v0.2.0+)
+
+To assign a custom model to a specific language:
+
+1. User clicks the settings icon on a language chip in `TranslationInput`
+2. `ModelSelectorPopover` opens with all enabled models grouped by provider
+3. User selects a model or clicks "Reset to Global" to use default
+4. Selection stored in `settings.languageModels[languageName]`
+5. During translation, languages are grouped by model for efficient API calls
+
+**Implementation Details:**
+- Language chips show a badge indicator when using a custom model
+- Translation cards display which model was used for each language
+- Model grouping optimizes API usage by batching same-model translations
+
 ### Vite Configuration
 
 - Base path: `/prism-translate/` for GitHub Pages, `/` for regular deployment
@@ -116,17 +179,23 @@ src/
 ├── constants.ts               # Language configs and defaults
 ├── components/
 │   ├── Header.tsx             # Top navigation with model selector
-│   ├── TranslationInput.tsx   # Left panel input area
-│   ├── TranslationCard.tsx    # Right panel output cards
+│   ├── TranslationInput.tsx   # Left panel input area with language chips
+│   ├── TranslationCard.tsx    # Right panel output cards with model info
 │   ├── SettingsModal.tsx      # Settings dialog
+│   ├── LanguageSwitcher.tsx   # Language selection dropdown
+│   ├── ModelSelectorPopover.tsx  # [NEW v0.2.0] Per-language model selector
 │   ├── settings/              # Settings sub-views
-│   └── ui/                    # shadcn/ui components
+│   └── ui/                    # shadcn/ui components (17 components)
 ├── services/
 │   ├── llmService.ts          # AI provider integration
 │   ├── crypto.ts              # Encryption utilities
 │   └── configIO.ts            # Import/export config
 ├── config/
 │   └── models.ts              # Provider definitions (single source of truth)
+├── i18n/
+│   ├── index.ts               # i18next configuration
+│   └── locales/               # Translation files (en, zh, ja)
+├── hooks/                     # Custom React hooks
 └── lib/
     └── utils.ts               # Utility functions
 ```

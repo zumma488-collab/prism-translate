@@ -65,7 +65,17 @@
       "updateProvider": "プロバイダーを更新",
       "nameRequired": "プロバイダー名は必須です",
       "noModelsAdded": "まだモデルが追加されていません。",
-      "configureProviderHint": "カスタムプロバイダーの接続情報を設定します。"
+      "configureProviderHint": "カスタムプロバイダーの接続情報を設定します。",
+      "fetchModels": "/models から取得",
+      "fetching": "モデルを取得中...",
+      "selectModels": "モデルを選択",
+      "selectModelsDescription": "プロバイダー構成に追加するモデルを選択してください。",
+      "addSelected": "選択項目を追加",
+      "selectAll": "すべて選択",
+      "fetchError": "モデルの取得に失敗しました：{{error}}",
+      "noModelsFoundFromApi": "API からモデルが見つかりませんでした。",
+      "invalidResponse": "無効なレスポンス形式",
+      "selectedCount": "{{count}} 件選択中"
     },
     "provider": {
       "searchPlaceholder": "プロバイダーを検索...",

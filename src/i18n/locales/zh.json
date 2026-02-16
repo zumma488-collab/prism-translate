@@ -65,7 +65,17 @@
       "updateProvider": "更新提供商",
       "nameRequired": "提供商名称为必填项",
       "noModelsAdded": "尚未添加任何模型。",
-      "configureProviderHint": "配置自定义提供商的连接信息。"
+      "configureProviderHint": "配置自定义提供商的连接信息。",
+      "fetchModels": "从 /models 获取",
+      "fetching": "正在获取模型...",
+      "selectModels": "选择模型",
+      "selectModelsDescription": "选择要添加到提供商配置的模型。",
+      "addSelected": "添加选中",
+      "selectAll": "全选",
+      "fetchError": "获取模型失败：{{error}}",
+      "noModelsFoundFromApi": "未从 API 找到模型。",
+      "invalidResponse": "响应格式无效",
+      "selectedCount": "已选 {{count}} 项"
     },
     "provider": {
       "searchPlaceholder": "搜索提供商...",

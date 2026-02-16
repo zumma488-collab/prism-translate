@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './globals.css';
 import './i18n'; // Initialize i18n
+import { TooltipProvider } from './components/ui/tooltip';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -12,6 +13,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <TooltipProvider>
+      <App />
+    </TooltipProvider>
   </React.StrictMode>
 );
