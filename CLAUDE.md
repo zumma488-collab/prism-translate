@@ -25,6 +25,7 @@ The app uses a flexible provider system defined in `src/config/models.ts`:
 
 - **PROVIDER_DEFINITIONS**: Single source of truth for all provider configurations
 - **Categories**: `popular`, `native`, `community`, `compatible`
+- **Architecture**: Client-side SPA (Static) deployed on Vercel. No backend/serverless functions.
 - Each provider has `id`, `name`, `icon`, `defaultModel`, and `defaultModels` list
 - Supports 17+ providers including native SDK providers and OpenAI-compatible APIs
 

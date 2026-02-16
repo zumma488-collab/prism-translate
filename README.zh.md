@@ -43,7 +43,8 @@
 - **多模型支持**: 通过 Vercel AI SDK 无缝切换 Google Gemini、OpenAI 等多种 AI 提供商
 - **现代化 UI/UX**: 使用 `shadcn/ui` 和 Tailwind CSS v4 打造高端响应式设计
 - **微动画效果**: 通过 `tw-animate-css` 提升用户体验
-- **Serverless 就绪**: 针对 Vercel Serverless Functions 优化部署
+- **微动画效果**: 通过 `tw-animate-css` 提升用户体验
+- **类型安全**: 完整的 TypeScript 支持，确保开发稳健性
 - **类型安全**: 完整的 TypeScript 支持，确保开发稳健性
 
 ## 技术栈 (Tech Stack)
@@ -52,7 +53,7 @@
 - **样式**: Tailwind CSS v4
 - **UI 组件**: shadcn/ui
 - **AI 集成**: Vercel AI SDK + Google Gemini + OpenAI
-- **部署**: Vercel (Serverless Functions)
+- **部署**: Vercel
 
 ### AI Skills 参考
 

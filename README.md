@@ -25,7 +25,8 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
 - **Multi-Model Support**: Seamlessly switch between Google Gemini, OpenAI, and other providers via Vercel AI SDK.
 - **Modern UI/UX**: Built with `shadcn/ui` and Tailwind CSS v4 for a premium, responsive design.
 - **Micro-Animations**: Enhanced user experience with `tw-animate-css`.
-- **Serverless Ready**: Optimized for deployment on Vercel Serverless Functions.
+- **Micro-Animations**: Enhanced user experience with `tw-animate-css`.
+- **Type-Safe**: Full TypeScript support for robust development.
 - **Type-Safe**: Full TypeScript support for robust development.
 
 
