@@ -5,6 +5,26 @@ All notable changes to the Prism Translate project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-02-17
+
+### Added
+
+- **Multi-Model Translation**: Each target language can now select multiple AI models simultaneously. Results are displayed side-by-side for easy comparison.
+- **TranslationGroup Component**: New component for grouping and displaying multiple translation results per language in a vertical list layout.
+- **Translation Visibility Toggle**: Added an eye icon button to collapse/expand individual translation results, saving screen space.
+- **Shared Language Header**: Language code and name are displayed once at the top of each translation group, eliminating redundancy.
+
+### Changed
+
+- **Multi-Select Model Popover**: `ModelSelectorPopover` now supports checkbox-based multi-selection instead of single radio selection.
+- **Data Type Migration**: `AppSettings.languageModels` upgraded from `Record<string, string>` to `Record<string, string[]>` to support multiple models per language. Automatic migration from old format is included.
+- **Translation Flow**: `handleTranslate()` now creates independent parallel requests for each `(language, model)` pair with progressive result display.
+
+### Improved
+
+- **Result Comparison**: Vertical list layout enables direct comparison of translations from different models without tab switching.
+- **Screen Space Efficiency**: Visibility toggle and shared headers reduce visual clutter when comparing multiple translations.
+
 ## [0.2.0] - 2026-02-15
 
 ### Added
@@ -106,7 +126,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/zumma488/prism-translate/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/zumma488/prism-translate/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/zumma488/prism-translate/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/zumma488/prism-translate/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/zumma488/prism-translate/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/zumma488/prism-translate/releases/tag/v0.1.0

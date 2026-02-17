@@ -39,32 +39,38 @@ Settings are stored encrypted in localStorage using Web Crypto API:
 - **Encryption**: `src/services/crypto.ts` handles encrypt/decrypt using AES-GCM
 - **Migration**: Automatic v2→v3 migration (plaintext to encrypted) on first load
 
-### Per-Language Model Customization (v0.2.0+)
+### Per-Language Multi-Model Translation (v0.2.1+)
 
-The app supports selecting different AI models for each target language:
+The app supports selecting **multiple AI models** for each target language:
 
-- **Settings Storage**: `AppSettings.languageModels` - `Record<string, string>`
+- **Settings Storage**: `AppSettings.languageModels` - `Record<string, string[]>`
   - Key: Language name (e.g., "Spanish", "Japanese")
-  - Value: Model unique ID in format `${providerId}:${modelId}`
+  - Value: Array of model unique IDs in format `${providerId}:${modelId}`
   - If not set for a language, uses global `activeModelKey`
 
 - **Translation Flow**:
-  1. Groups target languages by their assigned models
-  2. Executes parallel translation requests for each model group
-  3. Merges and sorts results to match original language order
+  1. Builds a flat list of `(language, model)` task pairs
+  2. Executes independent parallel translation requests for each pair
+  3. Results appear progressively as each translation completes
+  4. Results sorted by language order, then by model order within same language
 
 - **UI Components**:
-  - `ModelSelectorPopover.tsx`: Per-language model selection popover
+  - `ModelSelectorPopover.tsx`: Per-language multi-model selection popover (checkbox-based)
+  - `TranslationGroup.tsx`: Groups multiple results per language with shared header
   - Integrated into `TranslationInput.tsx` language chips
-  - Model info displayed on `TranslationCard.tsx`
+  - Model info displayed on `TranslationCard.tsx` and `TranslationGroup.tsx` footer
 
 - **Data Flow**:
   ```typescript
   // In App.tsx handleTranslate()
-  const modelGroups = new Map<string, string[]>();
+  const tasks: { lang: string; modelKey: string }[] = [];
   targetLanguages.forEach(lang => {
-    const modelKey = settings.languageModels?.[lang] || settings.activeModelKey;
-    modelGroups.get(modelKey)?.push(lang);
+    const langModelKeys = settings.languageModels?.[lang];
+    if (langModelKeys && langModelKeys.length > 0) {
+      langModelKeys.forEach(key => tasks.push({ lang, modelKey: key }));
+    } else {
+      tasks.push({ lang, modelKey: settings.activeModelKey });
+    }
   });
   ```
 
@@ -99,9 +105,10 @@ The app supports selecting different AI models for each target language:
 - `components/Header.tsx`: Top bar with global model selector and settings button
 - `components/TranslationInput.tsx`: Left panel for input text and language selection with per-language model chips
 - `components/TranslationCard.tsx`: Right panel output cards showing translations with model info
+- `components/TranslationGroup.tsx`: **[NEW v0.2.1]** Groups multiple translation results per language with shared header, vertical list layout, and visibility toggle
 - `components/SettingsModal.tsx`: Settings dialog with provider management
 - `components/LanguageSwitcher.tsx`: Language selection dropdown (shadcn/ui based)
-- `components/ModelSelectorPopover.tsx`: **[NEW v0.2.0]** Per-language model selection popover
+- `components/ModelSelectorPopover.tsx`: **[v0.2.0]** Per-language multi-model selection popover (checkbox-based)
 
 **Settings Sub-Views:**
 - `components/settings/ConnectProviderView.tsx`: Add new provider wizard
@@ -122,7 +129,7 @@ The app supports selecting different AI models for each target language:
 - `AppSettings`: Top-level settings with:
   - `providers[]`: Array of ProviderConfig instances
   - `activeModelKey`: Global default model (format: `${providerId}:${modelId}`)
-  - `languageModels?`: **[NEW v0.2.0]** Per-language model overrides (Record<string, string>)
+  - `languageModels?`: **[v0.2.1]** Per-language multi-model overrides (`Record<string, string[]>`)
 - `TranslationResult`: Translation output with language, code, text, tone, confidence, modelName, providerName
 - `ModelProvider`: Union type of all supported provider types
 
@@ -148,20 +155,23 @@ The app supports selecting different AI models for each target language:
 - `activeModelMeta()`: Finds currently active model from activeModelKey
 - If active model becomes invalid (disabled/deleted), auto-select first enabled model
 
-### Using Per-Language Models (v0.2.0+)
+### Using Per-Language Multi-Model Translation (v0.2.1+)
 
-To assign a custom model to a specific language:
+To assign multiple models to a specific language:
 
 1. User clicks the settings icon on a language chip in `TranslationInput`
-2. `ModelSelectorPopover` opens with all enabled models grouped by provider
-3. User selects a model or clicks "Reset to Global" to use default
-4. Selection stored in `settings.languageModels[languageName]`
-5. During translation, languages are grouped by model for efficient API calls
+2. `ModelSelectorPopover` opens with all enabled models (checkbox-based)
+3. User selects one or more models, or clicks "Reset to Global" to use default
+4. Selection stored in `settings.languageModels[languageName]` as `string[]`
+5. During translation, each (language, model) pair fires an independent request
+6. Results displayed in `TranslationGroup` with shared language header
 
 **Implementation Details:**
-- Language chips show a badge indicator when using a custom model
-- Translation cards display which model was used for each language
-- Model grouping optimizes API usage by batching same-model translations
+- Language chips show a badge with the count of selected models
+- `TranslationGroup` displays results vertically for easy comparison
+- Each result has copy, speak, and visibility toggle buttons
+- Visibility toggle collapses/expands individual translations to save space
+- Shared language header (code + name) shown once per language group
 
 ### Vite Configuration
 
@@ -182,9 +192,10 @@ src/
 │   ├── Header.tsx             # Top navigation with model selector
 │   ├── TranslationInput.tsx   # Left panel input area with language chips
 │   ├── TranslationCard.tsx    # Right panel output cards with model info
+│   ├── TranslationGroup.tsx   # [NEW v0.2.1] Multi-model result grouping
 │   ├── SettingsModal.tsx      # Settings dialog
 │   ├── LanguageSwitcher.tsx   # Language selection dropdown
-│   ├── ModelSelectorPopover.tsx  # [NEW v0.2.0] Per-language model selector
+│   ├── ModelSelectorPopover.tsx  # Per-language multi-model selector
 │   ├── settings/              # Settings sub-views
 │   └── ui/                    # shadcn/ui components (17 components)
 ├── services/
