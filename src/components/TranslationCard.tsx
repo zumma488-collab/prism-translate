@@ -64,18 +64,49 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
               {data.language}
             </span>
           </div>
+
+        </div>
+
+        {/* Toolbar: Model Info & Actions */}
+        <div className="flex items-center justify-between gap-2 mb-2">
+          {/* Left: Model Info */}
+          <div className="flex gap-2 items-center flex-wrap">
+            {data.modelName && (
+              <Badge
+                variant="secondary"
+                className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium"
+                title={
+                  data.providerName ? `Provider: ${data.providerName}` : undefined
+                }
+              >
+                {data.modelName}
+              </Badge>
+            )}
+            {data.tone && (
+              <Badge variant="secondary" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium">
+                {data.tone}
+              </Badge>
+            )}
+            {data.confidence && (
+              <Badge variant="outline" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border-transparent">
+                {data.confidence}%
+              </Badge>
+            )}
+          </div>
+
+          {/* Right: Actions */}
           <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  className="h-7 w-7 text-muted-foreground hover:text-foreground"
                   onClick={handleCopy}
                 >
                   <span
                     className="material-symbols-outlined"
-                    style={{ fontSize: '18px' }}
+                    style={{ fontSize: '16px' }}
                   >
                     content_copy
                   </span>
@@ -91,12 +122,12 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  className="h-7 w-7 text-muted-foreground hover:text-foreground"
                   onClick={handleSpeak}
                 >
                   <span
                     className="material-symbols-outlined"
-                    style={{ fontSize: '18px' }}
+                    style={{ fontSize: '16px' }}
                   >
                     volume_up
                   </span>
@@ -112,7 +143,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  className="h-7 w-7 text-muted-foreground hover:text-foreground"
                   onClick={() => setIsVisible(!isVisible)}
                 >
                   <span
@@ -192,31 +223,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
           </>
         )}
 
-        {(data.tone || data.confidence || data.modelName) && (
-          <div className="mt-3 flex gap-2 items-center flex-wrap">
-            {data.modelName && (
-              <Badge
-                variant="secondary"
-                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium"
-                title={
-                  data.providerName ? `Provider: ${data.providerName}` : undefined
-                }
-              >
-                {data.modelName}
-              </Badge>
-            )}
-            {data.tone && (
-              <Badge variant="secondary" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium">
-                {data.tone}
-              </Badge>
-            )}
-            {data.confidence && (
-              <Badge variant="outline" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border-transparent">
-                {data.confidence}%
-              </Badge>
-            )}
-          </div>
-        )}
+
       </div>
     </Card>
   )
