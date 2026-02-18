@@ -285,9 +285,9 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                                         variant="ghost"
                                         size="icon"
                                         onClick={() => removeModel(i)}
-                                        className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-muted-foreground hover:text-destructive size-8"
+                                        className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-muted-foreground hover:text-destructive size-7"
                                     >
-                                        <span className="material-symbols-outlined text-[16px]">close</span>
+                                        <span className="material-symbols-outlined !text-[16px]">close</span>
                                     </Button>
                                 </div>
                             ))}

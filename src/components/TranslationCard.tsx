@@ -57,9 +57,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
       <div className="flex-1 p-3 sm:p-5">
         <div className="flex justify-between items-start mb-2 sm:mb-3">
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="px-2 py-0.5 rounded text-xs font-medium uppercase">
-              {data.code}
-            </Badge>
+
             <span className="font-semibold text-sm text-foreground">
               {data.language}
             </span>
@@ -73,7 +71,7 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
           <div className="flex gap-2 items-center flex-wrap">
             {data.modelName && (
               <Badge
-                variant="secondary"
+                variant="outline"
                 className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium"
                 title={
                   data.providerName ? `Provider: ${data.providerName}` : undefined
@@ -83,12 +81,12 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
               </Badge>
             )}
             {data.tone && (
-              <Badge variant="secondary" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium">
+              <Badge variant="outline" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium">
                 {data.tone}
               </Badge>
             )}
             {data.confidence && (
-              <Badge variant="outline" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border-transparent">
+              <Badge variant="outline" className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium">
                 {data.confidence}%
               </Badge>
             )}

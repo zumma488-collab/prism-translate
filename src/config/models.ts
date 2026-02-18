@@ -14,6 +14,7 @@ export interface ProviderDefinition {
     category: 'popular' | 'all';
     baseUrl?: string;               // Custom endpoint (OpenAI compatible)
     requires?: string[];            // Extra required fields (e.g., accountId)
+    supportsFetchModels?: boolean;  // Whether GET /models endpoint is supported (default: true)
 }
 
 /**
@@ -49,6 +50,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             },
         ],
         category: 'popular',
+        supportsFetchModels: true,
     },
     {
         id: 'openai',
@@ -62,6 +64,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', enabled: false },
         ],
         category: 'popular',
+        supportsFetchModels: true,
     },
     {
         id: 'anthropic',
@@ -74,6 +77,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', enabled: true },
         ],
         category: 'popular',
+        supportsFetchModels: true,
     },
     {
         id: 'deepseek',
@@ -86,6 +90,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'deepseek-coder', name: 'DeepSeek Coder', enabled: true },
         ],
         category: 'popular',
+        supportsFetchModels: true,
     },
 
     // ==================== All Providers ====================
@@ -100,6 +105,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'mistral-medium-latest', name: 'Mistral Medium', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'xai',
@@ -112,6 +118,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'grok-2-mini', name: 'Grok-2 Mini', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'cohere',
@@ -124,6 +131,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'command-r', name: 'Command R', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'groq',
@@ -136,6 +144,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'llama-3.1-8b-instant', name: 'Llama 3.1 8B', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'together',
@@ -148,6 +157,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'mistralai/Mixtral-8x7B-Instruct-v0.1', name: 'Mixtral 8x7B', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'fireworks',
@@ -159,6 +169,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'accounts/fireworks/models/llama-v3p3-70b-instruct', name: 'Llama 3.3 70B', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'deepinfra',
@@ -170,6 +181,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'meta-llama/Llama-3.3-70B-Instruct', name: 'Llama 3.3 70B', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'perplexity',
@@ -182,6 +194,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'sonar', name: 'Sonar', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'cerebras',
@@ -193,6 +206,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'llama-3.3-70b', name: 'Llama 3.3 70B', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'ollama',
@@ -207,6 +221,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         baseUrl: 'http://localhost:11434/api',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'zhipu',
@@ -219,6 +234,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'glm-4-flash', name: 'GLM-4 Flash', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'openrouter',
@@ -231,6 +247,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
             { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet', enabled: true },
         ],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'workers',
@@ -243,6 +260,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         requires: ['accountId'],
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -256,6 +274,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         baseUrl: 'https://api.moonshot.cn/v1',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -285,6 +304,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         baseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -295,8 +315,9 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         defaultModels: [
             { id: 'MiniMax-M2', name: 'MiniMax-M2', enabled: true },
         ],
-        baseUrl: 'https://api.minimax.chat/v1',
+        baseUrl: 'https://api.minimaxi.com/v1',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -309,6 +330,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         baseUrl: 'https://api.baichuan-ai.com/v1',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -321,6 +343,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         ],
         baseUrl: 'https://ark.cn-beijing.volces.com/api/v3',
         category: 'all',
+        supportsFetchModels: true,
     },
     {
         id: 'custom',
@@ -330,6 +353,7 @@ export const PROVIDER_DEFINITIONS: ProviderDefinition[] = [
         defaultModel: '',
         defaultModels: [],
         category: 'all',
+        supportsFetchModels: true,
     },
 ];
 
