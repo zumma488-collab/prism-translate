@@ -211,10 +211,10 @@ const TranslationCard: React.FC<TranslationCardProps> = ({
               </>
             ) : (
               <div
-                className="h-8 flex items-center gap-2 text-muted-foreground/50 text-sm italic select-none cursor-pointer hover:text-muted-foreground transition-colors"
+                className="h-6 flex items-center gap-1.5 text-muted-foreground/50 text-xs italic select-none cursor-pointer hover:text-muted-foreground transition-colors"
                 onClick={() => setIsVisible(true)}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>visibility_off</span>
+                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>visibility_off</span>
                 <span>{t('translation.output.hidden', 'Translation hidden')}</span>
               </div>
             )}
