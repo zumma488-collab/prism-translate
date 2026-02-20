@@ -55,6 +55,8 @@
       "displayNamePlaceholder": "マイプロバイダー",
       "baseUrl": "ベース URL",
       "baseUrlPlaceholder": "https://api.example.com/v1",
+      "enableCustomBaseUrl": "カスタムベース URL を有効にする",
+      "customBaseUrlHint": "デフォルトの API エンドポイントを上書きする（リバースプロキシなど）",
       "apiKey": "API キー",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "ブラウザにローカル保存されます。",

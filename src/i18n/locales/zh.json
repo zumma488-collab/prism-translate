@@ -53,6 +53,8 @@
       "displayNamePlaceholder": "我的提供商",
       "baseUrl": "基础 URL",
       "baseUrlPlaceholder": "https://api.example.com/v1",
+      "enableCustomBaseUrl": "自定义 Base URL",
+      "customBaseUrlHint": "覆盖默认的 API 请求地址（如使用反向代理）",
       "apiKey": "API 密钥",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "本地存储在您的浏览器中。",

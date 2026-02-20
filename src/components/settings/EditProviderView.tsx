@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { Switch } from '@/components/ui/switch';
 import {
     Dialog,
     DialogContent,
@@ -34,6 +35,8 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
         models: initialConfig.models || [],
         headers: initialConfig.headers || {}
     });
+
+    const [enableCustomBaseUrl, setEnableCustomBaseUrl] = useState(!!initialConfig.baseUrl);
 
     const [newModelId, setNewModelId] = useState('');
     const [newModelName, setNewModelName] = useState('');
@@ -190,8 +193,29 @@ const EditProviderView: React.FC<EditProviderViewProps> = ({ initialConfig, onSa
                     />
                 </div>
 
+                {/* Custom Base URL Toggle */}
+                {config.type !== 'openai' && config.type !== 'custom' && config.type !== 'ollama' && config.type !== 'workers' && (
+                    <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                            <Label>{t('settings.form.enableCustomBaseUrl', '自定义 Base URL')}</Label>
+                            <p className="text-xs text-muted-foreground">
+                                {t('settings.form.customBaseUrlHint', '覆盖默认的 API 请求地址（如使用反向代理）')}
+                            </p>
+                        </div>
+                        <Switch
+                            checked={enableCustomBaseUrl}
+                            onCheckedChange={(checked) => {
+                                setEnableCustomBaseUrl(checked);
+                                if (!checked) {
+                                    setConfig({ ...config, baseUrl: '' });
+                                }
+                            }}
+                        />
+                    </div>
+                )}
+
                 {/* Base URL */}
-                {(config.type === 'openai' || config.type === 'custom') && (
+                {(config.type === 'openai' || config.type === 'custom' || config.type === 'ollama' || config.type === 'workers' || enableCustomBaseUrl) && (
                     <div className="space-y-2">
                         <Label htmlFor="baseUrl">{t('settings.form.baseUrl')}</Label>
                         <Input

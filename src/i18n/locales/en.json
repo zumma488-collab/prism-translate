@@ -55,6 +55,8 @@
       "displayNamePlaceholder": "My Provider",
       "baseUrl": "Base URL",
       "baseUrlPlaceholder": "https://api.example.com/v1",
+      "enableCustomBaseUrl": "Enable Custom Base URL",
+      "customBaseUrlHint": "Override the default API endpoint (e.g. for reverse proxy)",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Stored locally in your browser.",

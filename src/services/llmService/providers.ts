@@ -23,62 +23,62 @@ import { safeFetch } from './safeFetch';
 export function createModel(provider: ProviderConfig, modelId: string): LanguageModel {
     switch (provider.type) {
         case 'google': {
-            const google = createGoogleGenerativeAI({ apiKey: provider.apiKey, fetch: safeFetch });
+            const google = createGoogleGenerativeAI({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return google(modelId || 'gemini-2.0-flash');
         }
 
         case 'anthropic': {
-            const anthropic = createAnthropic({ apiKey: provider.apiKey, fetch: safeFetch });
+            const anthropic = createAnthropic({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return anthropic(modelId || 'claude-3-5-sonnet-20241022');
         }
 
         case 'mistral': {
-            const mistral = createMistral({ apiKey: provider.apiKey, fetch: safeFetch });
+            const mistral = createMistral({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return mistral(modelId || 'mistral-large-latest');
         }
 
         case 'xai': {
-            const xai = createXai({ apiKey: provider.apiKey, fetch: safeFetch });
+            const xai = createXai({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return xai(modelId || 'grok-2');
         }
 
         case 'cohere': {
-            const cohere = createCohere({ apiKey: provider.apiKey, fetch: safeFetch });
+            const cohere = createCohere({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return cohere(modelId || 'command-r-plus');
         }
 
         case 'groq': {
-            const groq = createGroq({ apiKey: provider.apiKey, fetch: safeFetch });
+            const groq = createGroq({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return groq(modelId || 'llama-3.3-70b-versatile');
         }
 
         case 'deepseek': {
-            const deepseek = createDeepSeek({ apiKey: provider.apiKey, fetch: safeFetch });
+            const deepseek = createDeepSeek({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return deepseek(modelId || 'deepseek-chat');
         }
 
         case 'together': {
-            const together = createTogetherAI({ apiKey: provider.apiKey, fetch: safeFetch });
+            const together = createTogetherAI({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return together(modelId || 'meta-llama/Llama-3.3-70B-Instruct-Turbo');
         }
 
         case 'fireworks': {
-            const fireworks = createFireworks({ apiKey: provider.apiKey, fetch: safeFetch });
+            const fireworks = createFireworks({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return fireworks(modelId || 'accounts/fireworks/models/llama-v3p3-70b-instruct');
         }
 
         case 'deepinfra': {
-            const deepinfra = createDeepInfra({ apiKey: provider.apiKey, fetch: safeFetch });
+            const deepinfra = createDeepInfra({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return deepinfra(modelId || 'meta-llama/Llama-3.3-70B-Instruct');
         }
 
         case 'perplexity': {
-            const perplexity = createPerplexity({ apiKey: provider.apiKey, fetch: safeFetch });
+            const perplexity = createPerplexity({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return perplexity(modelId || 'sonar-pro');
         }
 
         case 'cerebras': {
-            const cerebras = createCerebras({ apiKey: provider.apiKey, fetch: safeFetch });
+            const cerebras = createCerebras({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return cerebras(modelId || 'llama-3.3-70b');
         }
 
@@ -90,7 +90,7 @@ export function createModel(provider: ProviderConfig, modelId: string): Language
         }
 
         case 'zhipu': {
-            const zhipu = createZhipu({ apiKey: provider.apiKey, fetch: safeFetch });
+            const zhipu = createZhipu({ apiKey: provider.apiKey, baseURL: provider.baseUrl || undefined, fetch: safeFetch });
             return zhipu(modelId || 'glm-4-plus') as unknown as LanguageModel;
         }
 
@@ -105,6 +105,7 @@ export function createModel(provider: ProviderConfig, modelId: string): Language
         case 'openrouter': {
             const openrouter = createOpenRouter({
                 apiKey: provider.apiKey,
+                baseURL: provider.baseUrl || undefined,
                 fetch: safeFetch,
                 headers: {
                     'HTTP-Referer': 'https://github.com/vercel/ai', // Optional: for rankings
