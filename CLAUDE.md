@@ -230,3 +230,28 @@ src/
 - Encryption key derived from user's device-specific data
 - Never commit `.env.local` or expose API keys in code
 - Provider configs with API keys only stored in localStorage (encrypted)
+
+## Development Guidelines
+
+### Internationalization (i18n)
+
+- **NO HARDCODED STRINGS**: All new user-facing UI text MUST be extracted to `src/i18n/locales/`.
+- **Usage**: Always use the `useTranslation` hook from `react-i18next` to render strings. Hardcoding Chinese or English strings directly in JSX components is strictly prohibited.
+
+### UI Components & Styling
+
+- **Component Reuse**: The project utilizes 17 foundational `shadcn/ui` components located in `src/components/ui/`. **Always prioritize reusing or extending these components** before installing or building new composite components from scratch.
+- **Styling Preference**: Use Tailwind CSS utility classes (e.g., `className="..."`) for component styling. Avoid using inline `style={{}}` attributes unless dynamically calculating styles such as layout transforms.
+
+### TypeScript & React Practices
+
+- **Strict Typing**: The project enforces strict TypeScript. All new features, functions, and props MUST include comprehensive type definitions.
+- **Avoid `any`**: The use of the `any` type is strictly forbidden. If a type is unknown or highly dynamic, use `unknown` and properly narrow it down.
+- **Components**: Write functional components and utilize standard React Hooks.
+
+### Git Commit Standard
+
+- **Language**: All commit messages MUST be written in **English**.
+- **Conventional Commits**: Commit messages MUST adhere to the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+  - Formats: `feat: [description]`, `fix: [description]`, `docs: [description]`, `refactor: [description]`, `chore: [description]`.
+  - The description should be concise and clearly state the intent of the changes to maintain international collaboration standards.
