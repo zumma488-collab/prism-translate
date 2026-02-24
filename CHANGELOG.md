@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **New Release Branch**: Created the 0.2.2 branch for further development.
+- **Global i18n Support (12 Languages)**: Expanded UI language support from 3 to 12 languages for truly global accessibility:
+  - Arabic (ar), Spanish (es), Korean (ko), Burmese (my), Portuguese (pt)
+  - Russian (ru), Turkish (tr), Vietnamese (vi), Traditional Chinese (zh-TW)
+  - Existing: English (en), Simplified Chinese (zh), Japanese (ja)
+- **Enhanced Language Switcher**: Language selection dropdown now displays all 12 supported languages with native script names.
 
 ## [0.2.1] - 2026-02-17
 
