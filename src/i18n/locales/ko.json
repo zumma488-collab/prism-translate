@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "AI 번역기",
+        "selectModel": "모델 선택",
+        "changeModel": "모델 변경",
+        "manage": "관리",
+        "settings": "설정",
+        "noModels": "활성화된 모델이 없습니다.",
+        "language": "언어"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "번역할 텍스트를 입력하세요...",
+            "autoDetect": "자동 감지",
+            "languages": "{{count}}개 언어",
+            "languages_one": "{{count}}개 언어",
+            "languages_other": "{{count}}개 언어",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "언어 추가",
+            "add": "추가",
+            "translate": "번역",
+            "translating": "번역 중...",
+            "translateHotkey": "번역 (Ctrl+Enter)",
+            "selectLanguageWarning": "대상 언어를 하나 이상 선택하세요",
+            "cannotRemoveLanguage": "번역 중에는 언어를 제거할 수 없습니다",
+            "removeLanguage": "{{lang}} 제거"
+        },
+        "output": {
+            "emptyTitle": "번역 결과가 여기에 표시됩니다",
+            "emptySubtitle": "텍스트를 입력하고 번역을 클릭하여 시작하세요",
+            "copy": "복사",
+            "listen": "듣기",
+            "showMore": "더 보기",
+            "showLess": "접기"
+        }
+    },
+    "settings": {
+        "manageModels": "모델 관리",
+        "connectProvider": "제공업체 연결",
+        "editProvider": "제공업체 편집",
+        "description": "AI 제공업체 설정 및 모델 관리",
+        "searchModels": "모델 검색...",
+        "importConfig": "설정 가져오기",
+        "exportConfig": "설정 내보내기",
+        "deleteProvider": "제공업체 삭제",
+        "noModels": "구성된 모델이 없습니다.",
+        "noModelsFound": "모델을 찾을 수 없습니다.",
+        "confirmDelete": "이 제공업체를 삭제하시겠습니까?",
+        "categories": {
+            "popular": "인기",
+            "all": "모든 제공업체"
+        },
+        "form": {
+            "displayName": "표시 이름",
+            "displayNamePlaceholder": "내 제공업체",
+            "baseUrl": "기본 URL",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "사용자 지정 기본 URL 활성화",
+            "customBaseUrlHint": "기본 API 엔드포인트 재정의 (예: 리버스 프록시용)",
+            "apiKey": "API 키",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "브라우저에 로컬로 저장됩니다.",
+            "models": "모델",
+            "modelId": "모델 ID (예: gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "추가",
+            "updateProvider": "제공업체 업데이트",
+            "nameRequired": "제공업체 이름은 필수입니다",
+            "noModelsAdded": "아직 추가된 모델이 없습니다.",
+            "configureProviderHint": "사용자 지정 제공업체 설정을 구성합니다.",
+            "fetchModels": "/models에서 가져오기",
+            "fetching": "모델 가져오는 중...",
+            "selectModels": "모델 선택",
+            "selectModelsDescription": "제공업체 구성에 추가할 모델을 선택하세요.",
+            "addSelected": "선택 항목 추가",
+            "selectAll": "모두 선택",
+            "fetchError": "모델 가져오기 실패: {{error}}",
+            "noModelsFoundFromApi": "API에서 모델을 찾을 수 없습니다.",
+            "invalidResponse": "잘못된 응답 형식",
+            "selectedCount": "{{count}}개 선택됨"
+        },
+        "provider": {
+            "searchPlaceholder": "제공업체 검색...",
+            "customProvider": "사용자 지정 제공업체",
+            "customDescription": "모든 OpenAI 호환 API",
+            "searchResults": "검색 결과 ({{count}})",
+            "noResults": "일치하는 제공업체를 찾을 수 없습니다",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "가져오기 충돌",
+            "conflictMessage": "다음 제공업체가 이미 존재합니다:",
+            "newProvidersMessage": "{{count}}개의 새 제공업체가 추가됩니다.",
+            "newProvidersMessage_one": "{{count}}개의 새 제공업체가 추가됩니다.",
+            "newProvidersMessage_other": "{{count}}개의 새 제공업체가 추가됩니다.",
+            "cancel": "취소",
+            "merge": "병합",
+            "override": "덮어쓰기"
+        },
+        "toast": {
+            "exportSuccess": "설정이 성공적으로 내보내졌습니다!",
+            "exportFailed": "내보내기 실패: {{error}}",
+            "importSuccess": "{{count}}개의 제공업체를 성공적으로 가져왔습니다!",
+            "importSuccess_one": "{{count}}개의 제공업체를 성공적으로 가져왔습니다!",
+            "importSuccess_other": "{{count}}개의 제공업체를 성공적으로 가져왔습니다!",
+            "importFailed": "가져오기 실패",
+            "mergeSuccess": "병합 완료: {{new}}개의 새 제공업체 추가, {{merged}}개의 기존 제공업체 모델 병합.",
+            "overrideSuccess": "덮어쓰기 완료: {{count}}개의 제공업체를 가져왔습니다.",
+            "overrideSuccess_one": "덮어쓰기 완료: {{count}}개의 제공업체를 가져왔습니다.",
+            "overrideSuccess_other": "덮어쓰기 완료: {{count}}개의 제공업체를 가져왔습니다."
+        }
+    },
+    "errors": {
+        "translationFailed": "번역 실패: {{error}}",
+        "unknown": "알 수 없는 오류"
+    }
+}

@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "مترجم الذكاء الاصطناعي",
+        "selectModel": "اختيار النموذج",
+        "changeModel": "تغيير النموذج",
+        "manage": "إدارة",
+        "settings": "الإعدادات",
+        "noModels": "لا توجد نماذج مفعّلة.",
+        "language": "اللغة"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "أدخل النص للترجمة...",
+            "autoDetect": "كشف تلقائي",
+            "languages": "{{count}} لغات",
+            "languages_one": "لغة واحدة",
+            "languages_other": "{{count}} لغات",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "إضافة لغة",
+            "add": "إضافة",
+            "translate": "ترجمة",
+            "translating": "جارٍ الترجمة...",
+            "translateHotkey": "ترجمة (Ctrl+Enter)",
+            "selectLanguageWarning": "يرجى اختيار لغة هدف واحدة على الأقل",
+            "cannotRemoveLanguage": "لا يمكن إزالة اللغة أثناء الترجمة",
+            "removeLanguage": "إزالة {{lang}}"
+        },
+        "output": {
+            "emptyTitle": "ستظهر الترجمات هنا",
+            "emptySubtitle": "أدخل النص وانقر على ترجمة للبدء",
+            "copy": "نسخ",
+            "listen": "استماع",
+            "showMore": "عرض المزيد",
+            "showLess": "عرض أقل"
+        }
+    },
+    "settings": {
+        "manageModels": "إدارة النماذج",
+        "connectProvider": "ربط مزوّد",
+        "editProvider": "تعديل المزوّد",
+        "description": "إدارة إعدادات مزوّد الذكاء الاصطناعي والنماذج",
+        "searchModels": "البحث عن نماذج...",
+        "importConfig": "استيراد الإعدادات",
+        "exportConfig": "تصدير الإعدادات",
+        "deleteProvider": "حذف المزوّد",
+        "noModels": "لم يتم تكوين أي نماذج.",
+        "noModelsFound": "لم يتم العثور على نماذج.",
+        "confirmDelete": "هل أنت متأكد من رغبتك في إزالة هذا المزوّد؟",
+        "categories": {
+            "popular": "شائع",
+            "all": "جميع المزوّدين"
+        },
+        "form": {
+            "displayName": "اسم العرض",
+            "displayNamePlaceholder": "المزوّد الخاص بي",
+            "baseUrl": "عنوان URL الأساسي",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "تفعيل عنوان URL مخصص",
+            "customBaseUrlHint": "تجاوز نقطة نهاية API الافتراضية (مثل الوكيل العكسي)",
+            "apiKey": "مفتاح API",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "يتم تخزينه محلياً في متصفحك.",
+            "models": "النماذج",
+            "modelId": "معرّف النموذج (مثل gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "إضافة",
+            "updateProvider": "تحديث المزوّد",
+            "nameRequired": "اسم المزوّد مطلوب",
+            "noModelsAdded": "لم تتم إضافة نماذج بعد.",
+            "configureProviderHint": "تكوين إعدادات المزوّد المخصص.",
+            "fetchModels": "جلب من /models",
+            "fetching": "جارٍ جلب النماذج...",
+            "selectModels": "اختيار النماذج",
+            "selectModelsDescription": "اختر النماذج لإضافتها إلى تكوين المزوّد.",
+            "addSelected": "إضافة المحدد",
+            "selectAll": "تحديد الكل",
+            "fetchError": "فشل في جلب النماذج: {{error}}",
+            "noModelsFoundFromApi": "لم يتم العثور على نماذج من API.",
+            "invalidResponse": "صيغة الاستجابة غير صالحة",
+            "selectedCount": "{{count}} محدد"
+        },
+        "provider": {
+            "searchPlaceholder": "البحث عن مزوّدين...",
+            "customProvider": "مزوّد مخصص",
+            "customDescription": "أي API متوافق مع OpenAI",
+            "searchResults": "نتائج البحث ({{count}})",
+            "noResults": "لم يتم العثور على مزوّدين مطابقين",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "تعارض في الاستيراد",
+            "conflictMessage": "المزوّدون التاليون موجودون بالفعل:",
+            "newProvidersMessage": "سيتم إضافة {{count}} مزوّد(ين) جديد(ة).",
+            "newProvidersMessage_one": "سيتم إضافة مزوّد جديد واحد.",
+            "newProvidersMessage_other": "سيتم إضافة {{count}} مزوّدين جدد.",
+            "cancel": "إلغاء",
+            "merge": "دمج",
+            "override": "استبدال"
+        },
+        "toast": {
+            "exportSuccess": "تم تصدير الإعدادات بنجاح!",
+            "exportFailed": "فشل التصدير: {{error}}",
+            "importSuccess": "تم استيراد {{count}} مزوّد(ين) بنجاح!",
+            "importSuccess_one": "تم استيراد مزوّد واحد بنجاح!",
+            "importSuccess_other": "تم استيراد {{count}} مزوّدين بنجاح!",
+            "importFailed": "فشل الاستيراد",
+            "mergeSuccess": "تم الدمج: إضافة {{new}} مزوّد(ين) جديد(ة)، ودمج نماذج {{merged}} مزوّد(ين) موجود(ة).",
+            "overrideSuccess": "اكتمل الاستبدال: تم استيراد {{count}} مزوّد(ين).",
+            "overrideSuccess_one": "اكتمل الاستبدال: تم استيراد مزوّد واحد.",
+            "overrideSuccess_other": "اكتمل الاستبدال: تم استيراد {{count}} مزوّدين."
+        }
+    },
+    "errors": {
+        "translationFailed": "فشلت الترجمة: {{error}}",
+        "unknown": "خطأ غير معروف"
+    }
+}

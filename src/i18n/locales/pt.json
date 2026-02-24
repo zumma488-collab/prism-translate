@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "Tradutor IA",
+        "selectModel": "Selecionar modelo",
+        "changeModel": "Alterar modelo",
+        "manage": "Gerenciar",
+        "settings": "Configurações",
+        "noModels": "Nenhum modelo habilitado.",
+        "language": "Idioma"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "Digite o texto para traduzir...",
+            "autoDetect": "Detecção automática",
+            "languages": "{{count}} idiomas",
+            "languages_one": "{{count}} idioma",
+            "languages_other": "{{count}} idiomas",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "Adicionar idioma",
+            "add": "Adicionar",
+            "translate": "Traduzir",
+            "translating": "Traduzindo...",
+            "translateHotkey": "Traduzir (Ctrl+Enter)",
+            "selectLanguageWarning": "Por favor, selecione pelo menos um idioma de destino",
+            "cannotRemoveLanguage": "Não é possível remover o idioma durante a tradução",
+            "removeLanguage": "Remover {{lang}}"
+        },
+        "output": {
+            "emptyTitle": "As traduções aparecerão aqui",
+            "emptySubtitle": "Digite o texto e clique em Traduzir para começar",
+            "copy": "Copiar",
+            "listen": "Ouvir",
+            "showMore": "Mostrar mais",
+            "showLess": "Mostrar menos"
+        }
+    },
+    "settings": {
+        "manageModels": "Gerenciar modelos",
+        "connectProvider": "Conectar provedor",
+        "editProvider": "Editar provedor",
+        "description": "Gerencie as configurações do provedor de IA e modelos",
+        "searchModels": "Pesquisar modelos...",
+        "importConfig": "Importar configuração",
+        "exportConfig": "Exportar configuração",
+        "deleteProvider": "Excluir provedor",
+        "noModels": "Nenhum modelo configurado.",
+        "noModelsFound": "Nenhum modelo encontrado.",
+        "confirmDelete": "Tem certeza de que deseja remover este provedor?",
+        "categories": {
+            "popular": "Popular",
+            "all": "Todos os provedores"
+        },
+        "form": {
+            "displayName": "Nome de exibição",
+            "displayNamePlaceholder": "Meu provedor",
+            "baseUrl": "URL base",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "Habilitar URL base personalizada",
+            "customBaseUrlHint": "Substituir o endpoint padrão da API (ex. para proxy reverso)",
+            "apiKey": "Chave API",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "Armazenado localmente no seu navegador.",
+            "models": "Modelos",
+            "modelId": "ID do modelo (ex. gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "Adicionar",
+            "updateProvider": "Atualizar provedor",
+            "nameRequired": "O nome do provedor é obrigatório",
+            "noModelsAdded": "Nenhum modelo adicionado ainda.",
+            "configureProviderHint": "Configure as configurações do provedor personalizado.",
+            "fetchModels": "Obter de /models",
+            "fetching": "Obtendo modelos...",
+            "selectModels": "Selecionar modelos",
+            "selectModelsDescription": "Selecione os modelos para adicionar à configuração do provedor.",
+            "addSelected": "Adicionar selecionados",
+            "selectAll": "Selecionar tudo",
+            "fetchError": "Falha ao obter modelos: {{error}}",
+            "noModelsFoundFromApi": "Nenhum modelo encontrado na API.",
+            "invalidResponse": "Formato de resposta inválido",
+            "selectedCount": "{{count}} selecionados"
+        },
+        "provider": {
+            "searchPlaceholder": "Pesquisar provedores...",
+            "customProvider": "Provedor personalizado",
+            "customDescription": "Qualquer API compatível com OpenAI",
+            "searchResults": "Resultados da pesquisa ({{count}})",
+            "noResults": "Nenhum provedor correspondente encontrado",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "Conflito de importação",
+            "conflictMessage": "Os seguintes provedores já existem:",
+            "newProvidersMessage": "{{count}} novo(s) provedor(es) será(ão) adicionado(s).",
+            "newProvidersMessage_one": "{{count}} novo provedor será adicionado.",
+            "newProvidersMessage_other": "{{count}} novos provedores serão adicionados.",
+            "cancel": "Cancelar",
+            "merge": "Mesclar",
+            "override": "Substituir"
+        },
+        "toast": {
+            "exportSuccess": "Configuração exportada com sucesso!",
+            "exportFailed": "Falha na exportação: {{error}}",
+            "importSuccess": "{{count}} provedor(es) importado(s) com sucesso!",
+            "importSuccess_one": "{{count}} provedor importado com sucesso!",
+            "importSuccess_other": "{{count}} provedores importados com sucesso!",
+            "importFailed": "Falha na importação",
+            "mergeSuccess": "Mesclado: {{new}} novo(s) provedor(es) adicionado(s), modelos de {{merged}} provedor(es) existente(s) mesclados.",
+            "overrideSuccess": "Substituição completa: {{count}} provedor(es) importado(s).",
+            "overrideSuccess_one": "Substituição completa: {{count}} provedor importado.",
+            "overrideSuccess_other": "Substituição completa: {{count}} provedores importados."
+        }
+    },
+    "errors": {
+        "translationFailed": "Falha na tradução: {{error}}",
+        "unknown": "Erro desconhecido"
+    }
+}

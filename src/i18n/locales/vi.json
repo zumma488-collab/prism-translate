@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "Dịch thuật AI",
+        "selectModel": "Chọn mô hình",
+        "changeModel": "Đổi mô hình",
+        "manage": "Quản lý",
+        "settings": "Cài đặt",
+        "noModels": "Chưa có mô hình nào được kích hoạt.",
+        "language": "Ngôn ngữ"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "Nhập văn bản cần dịch...",
+            "autoDetect": "Tự động nhận diện",
+            "languages": "{{count}} ngôn ngữ",
+            "languages_one": "{{count}} ngôn ngữ",
+            "languages_other": "{{count}} ngôn ngữ",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "Thêm ngôn ngữ",
+            "add": "Thêm",
+            "translate": "Dịch",
+            "translating": "Đang dịch...",
+            "translateHotkey": "Dịch (Ctrl+Enter)",
+            "selectLanguageWarning": "Vui lòng chọn ít nhất một ngôn ngữ đích",
+            "cannotRemoveLanguage": "Không thể xóa ngôn ngữ trong khi đang dịch",
+            "removeLanguage": "Xóa {{lang}}"
+        },
+        "output": {
+            "emptyTitle": "Bản dịch sẽ hiển thị ở đây",
+            "emptySubtitle": "Nhập văn bản và nhấn Dịch để bắt đầu",
+            "copy": "Sao chép",
+            "listen": "Nghe",
+            "showMore": "Xem thêm",
+            "showLess": "Thu gọn"
+        }
+    },
+    "settings": {
+        "manageModels": "Quản lý mô hình",
+        "connectProvider": "Kết nối nhà cung cấp",
+        "editProvider": "Chỉnh sửa nhà cung cấp",
+        "description": "Quản lý cài đặt nhà cung cấp AI và mô hình",
+        "searchModels": "Tìm mô hình...",
+        "importConfig": "Nhập cấu hình",
+        "exportConfig": "Xuất cấu hình",
+        "deleteProvider": "Xóa nhà cung cấp",
+        "noModels": "Chưa cấu hình mô hình nào.",
+        "noModelsFound": "Không tìm thấy mô hình.",
+        "confirmDelete": "Bạn có chắc muốn xóa nhà cung cấp này?",
+        "categories": {
+            "popular": "Phổ biến",
+            "all": "Tất cả nhà cung cấp"
+        },
+        "form": {
+            "displayName": "Tên hiển thị",
+            "displayNamePlaceholder": "Nhà cung cấp của tôi",
+            "baseUrl": "URL cơ sở",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "Bật URL cơ sở tùy chỉnh",
+            "customBaseUrlHint": "Ghi đè endpoint API mặc định (vd. cho reverse proxy)",
+            "apiKey": "Khóa API",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "Được lưu trữ cục bộ trên trình duyệt.",
+            "models": "Mô hình",
+            "modelId": "ID mô hình (vd. gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "Thêm",
+            "updateProvider": "Cập nhật nhà cung cấp",
+            "nameRequired": "Tên nhà cung cấp là bắt buộc",
+            "noModelsAdded": "Chưa có mô hình nào được thêm.",
+            "configureProviderHint": "Cấu hình cài đặt nhà cung cấp tùy chỉnh.",
+            "fetchModels": "Lấy từ /models",
+            "fetching": "Đang tải mô hình...",
+            "selectModels": "Chọn mô hình",
+            "selectModelsDescription": "Chọn mô hình để thêm vào cấu hình nhà cung cấp.",
+            "addSelected": "Thêm đã chọn",
+            "selectAll": "Chọn tất cả",
+            "fetchError": "Không thể tải mô hình: {{error}}",
+            "noModelsFoundFromApi": "Không tìm thấy mô hình từ API.",
+            "invalidResponse": "Định dạng phản hồi không hợp lệ",
+            "selectedCount": "Đã chọn {{count}}"
+        },
+        "provider": {
+            "searchPlaceholder": "Tìm nhà cung cấp...",
+            "customProvider": "Nhà cung cấp tùy chỉnh",
+            "customDescription": "Bất kỳ API tương thích OpenAI",
+            "searchResults": "Kết quả tìm kiếm ({{count}})",
+            "noResults": "Không tìm thấy nhà cung cấp phù hợp",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "Xung đột nhập",
+            "conflictMessage": "Các nhà cung cấp sau đã tồn tại:",
+            "newProvidersMessage": "{{count}} nhà cung cấp mới sẽ được thêm.",
+            "newProvidersMessage_one": "{{count}} nhà cung cấp mới sẽ được thêm.",
+            "newProvidersMessage_other": "{{count}} nhà cung cấp mới sẽ được thêm.",
+            "cancel": "Hủy",
+            "merge": "Gộp",
+            "override": "Ghi đè"
+        },
+        "toast": {
+            "exportSuccess": "Xuất cấu hình thành công!",
+            "exportFailed": "Xuất thất bại: {{error}}",
+            "importSuccess": "Đã nhập thành công {{count}} nhà cung cấp!",
+            "importSuccess_one": "Đã nhập thành công {{count}} nhà cung cấp!",
+            "importSuccess_other": "Đã nhập thành công {{count}} nhà cung cấp!",
+            "importFailed": "Nhập thất bại",
+            "mergeSuccess": "Đã gộp: thêm {{new}} nhà cung cấp mới, gộp mô hình từ {{merged}} nhà cung cấp hiện có.",
+            "overrideSuccess": "Ghi đè hoàn tất: đã nhập {{count}} nhà cung cấp.",
+            "overrideSuccess_one": "Ghi đè hoàn tất: đã nhập {{count}} nhà cung cấp.",
+            "overrideSuccess_other": "Ghi đè hoàn tất: đã nhập {{count}} nhà cung cấp."
+        }
+    },
+    "errors": {
+        "translationFailed": "Dịch thất bại: {{error}}",
+        "unknown": "Lỗi không xác định"
+    }
+}
