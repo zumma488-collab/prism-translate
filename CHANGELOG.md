@@ -5,6 +5,16 @@ All notable changes to the Prism Translate project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2026-02-24
+
+### Added
+
+- **Global i18n Support (12 Languages)**: Expanded UI language support from 3 to 12 languages for truly global accessibility:
+  - Arabic (ar), Spanish (es), Korean (ko), Burmese (my), Portuguese (pt)
+  - Russian (ru), Turkish (tr), Vietnamese (vi), Traditional Chinese (zh-TW)
+  - Existing: English (en), Simplified Chinese (zh), Japanese (ja)
+- **Enhanced Language Switcher**: Language selection dropdown now displays all 12 supported languages with native script names.
+
 ## [0.2.1] - 2026-02-17
 
 ### Added
@@ -138,9 +148,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/zumma488/prism-translate/compare/v0.2.1...HEAD
+[0.2.2]: https://github.com/zumma488/prism-translate/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/zumma488/prism-translate/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/zumma488/prism-translate/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/zumma488/prism-translate/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/zumma488/prism-translate/releases/tag/v0.1.0
-

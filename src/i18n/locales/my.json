@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "AI ဘာသာပြန်",
+        "selectModel": "မော်ဒယ်ရွေးချယ်ပါ",
+        "changeModel": "မော်ဒယ်ပြောင်းပါ",
+        "manage": "စီမံပါ",
+        "settings": "ဆက်တင်များ",
+        "noModels": "ဖွင့်ထားသည့် မော်ဒယ်မရှိပါ။",
+        "language": "ဘာသာစကား"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "ဘာသာပြန်ရန် စာသားထည့်ပါ...",
+            "autoDetect": "အလိုအလျောက် ရှာဖွေပါ",
+            "languages": "ဘာသာစကား {{count}} ခု",
+            "languages_one": "ဘာသာစကား {{count}} ခု",
+            "languages_other": "ဘာသာစကား {{count}} ခု",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "ဘာသာစကား ထပ်ထည့်ပါ",
+            "add": "ထည့်ပါ",
+            "translate": "ဘာသာပြန်ပါ",
+            "translating": "ဘာသာပြန်နေသည်...",
+            "translateHotkey": "ဘာသာပြန်ပါ (Ctrl+Enter)",
+            "selectLanguageWarning": "ပစ်မှတ်ဘာသာစကား အနည်းဆုံး တစ်ခုရွေးချယ်ပါ",
+            "cannotRemoveLanguage": "ဘာသာပြန်နေစဉ် ဘာသာစကားကို ဖယ်ရှားလို့မရပါ",
+            "removeLanguage": "{{lang}} ကို ဖယ်ရှားပါ"
+        },
+        "output": {
+            "emptyTitle": "ဘာသာပြန်ချက်များ ဤနေရာတွင် ပေါ်လာပါမည်",
+            "emptySubtitle": "စာသားထည့်ပြီး ဘာသာပြန်ကို နှိပ်ပါ",
+            "copy": "ကူးယူပါ",
+            "listen": "နားထောင်ပါ",
+            "showMore": "ပိုပြပါ",
+            "showLess": "လျှော့ပြပါ"
+        }
+    },
+    "settings": {
+        "manageModels": "မော်ဒယ်စီမံပါ",
+        "connectProvider": "ဝန်ဆောင်မှုချိတ်ဆက်ပါ",
+        "editProvider": "ဝန်ဆောင်မှုပြင်ဆင်ပါ",
+        "description": "AI ဝန်ဆောင်မှု ဆက်တင်များနှင့် မော်ဒယ်များ စီမံပါ",
+        "searchModels": "မော်ဒယ်ရှာပါ...",
+        "importConfig": "ဆက်တင် တင်သွင်းပါ",
+        "exportConfig": "ဆက်တင် ထုတ်ယူပါ",
+        "deleteProvider": "ဝန်ဆောင်မှု ဖျက်ပါ",
+        "noModels": "မော်ဒယ် သတ်မှတ်ထားခြင်း မရှိပါ။",
+        "noModelsFound": "မော်ဒယ် ရှာမတွေ့ပါ။",
+        "confirmDelete": "ဤဝန်ဆောင်မှုကို ဖယ်ရှားလိုသည်မှာ သေချာပါသလား?",
+        "categories": {
+            "popular": "ရေပန်းစား",
+            "all": "ဝန်ဆောင်မှုအားလုံး"
+        },
+        "form": {
+            "displayName": "ပြသမည့်အမည်",
+            "displayNamePlaceholder": "ကျွန်ုပ်၏ ဝန်ဆောင်မှု",
+            "baseUrl": "အခြေခံ URL",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "စိတ်ကြိုက် URL ဖွင့်ပါ",
+            "customBaseUrlHint": "မူရင်း API endpoint ကို အစားထိုးပါ (ဥပမာ- reverse proxy)",
+            "apiKey": "API သော့",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "သင့်ဘရောက်ဇာတွင် ဒေသတွင်းသိမ်းဆည်းထားပါသည်။",
+            "models": "မော်ဒယ်များ",
+            "modelId": "မော်ဒယ် ID (ဥပမာ gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "ထည့်ပါ",
+            "updateProvider": "ဝန်ဆောင်မှု အပ်ဒိတ်ပါ",
+            "nameRequired": "ဝန်ဆောင်မှုအမည် လိုအပ်ပါသည်",
+            "noModelsAdded": "မော်ဒယ် ထည့်ထားခြင်း မရှိသေးပါ။",
+            "configureProviderHint": "စိတ်ကြိုက် ဝန်ဆောင်မှု ဆက်တင်ကို သတ်မှတ်ပါ။",
+            "fetchModels": "/models မှ ရယူပါ",
+            "fetching": "မော်ဒယ်များ ရယူနေသည်...",
+            "selectModels": "မော်ဒယ်ရွေးချယ်ပါ",
+            "selectModelsDescription": "ဝန်ဆောင်မှု ဖွဲ့စည်းမှုတွင် ထည့်မည့် မော်ဒယ်များကို ရွေးပါ။",
+            "addSelected": "ရွေးချယ်ထားသည်များ ထည့်ပါ",
+            "selectAll": "အားလုံးရွေးပါ",
+            "fetchError": "မော်ဒယ် ရယူရန် မအောင်မြင်ပါ: {{error}}",
+            "noModelsFoundFromApi": "API မှ မော်ဒယ် ရှာမတွေ့ပါ။",
+            "invalidResponse": "တုံ့ပြန်မှု ပုံစံ မမှန်ကန်ပါ",
+            "selectedCount": "{{count}} ခု ရွေးထားသည်"
+        },
+        "provider": {
+            "searchPlaceholder": "ဝန်ဆောင်မှု ရှာပါ...",
+            "customProvider": "စိတ်ကြိုက် ဝန်ဆောင်မှု",
+            "customDescription": "OpenAI နှင့် တွဲသုံးနိုင်သော API",
+            "searchResults": "ရှာဖွေမှု ရလဒ်များ ({{count}})",
+            "noResults": "ကိုက်ညီသော ဝန်ဆောင်မှု ရှာမတွေ့ပါ",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "တင်သွင်းမှု ပဋိပက္ခ",
+            "conflictMessage": "အောက်ပါ ဝန်ဆောင်မှုများ ရှိနှင့်ပြီးဖြစ်သည်-",
+            "newProvidersMessage": "ဝန်ဆောင်မှုအသစ် {{count}} ခု ထည့်ပါမည်။",
+            "newProvidersMessage_one": "ဝန်ဆောင်မှုအသစ် {{count}} ခု ထည့်ပါမည်။",
+            "newProvidersMessage_other": "ဝန်ဆောင်မှုအသစ် {{count}} ခု ထည့်ပါမည်။",
+            "cancel": "ပယ်ဖျက်ပါ",
+            "merge": "ပေါင်းစည်းပါ",
+            "override": "အစားထိုးပါ"
+        },
+        "toast": {
+            "exportSuccess": "ဆက်တင် ထုတ်ယူမှု အောင်မြင်ပါသည်!",
+            "exportFailed": "ထုတ်ယူမှု မအောင်မြင်ပါ: {{error}}",
+            "importSuccess": "ဝန်ဆောင်မှု {{count}} ခု အောင်မြင်စွာ တင်သွင်းပြီးပါပြီ!",
+            "importSuccess_one": "ဝန်ဆောင်မှု {{count}} ခု အောင်မြင်စွာ တင်သွင်းပြီးပါပြီ!",
+            "importSuccess_other": "ဝန်ဆောင်မှု {{count}} ခု အောင်မြင်စွာ တင်သွင်းပြီးပါပြီ!",
+            "importFailed": "တင်သွင်းမှု မအောင်မြင်ပါ",
+            "mergeSuccess": "ပေါင်းစည်းပြီး: ဝန်ဆောင်မှုအသစ် {{new}} ခု ထည့်ပြီး၊ ရှိပြီးသား ဝန်ဆောင်မှု {{merged}} ခု၏ မော်ဒယ်များ ပေါင်းစည်းပြီး။",
+            "overrideSuccess": "အစားထိုးမှု ပြီးစီး: ဝန်ဆောင်မှု {{count}} ခု တင်သွင်းပြီး။",
+            "overrideSuccess_one": "အစားထိုးမှု ပြီးစီး: ဝန်ဆောင်မှု {{count}} ခု တင်သွင်းပြီး။",
+            "overrideSuccess_other": "အစားထိုးမှု ပြီးစီး: ဝန်ဆောင်မှု {{count}} ခု တင်သွင်းပြီး။"
+        }
+    },
+    "errors": {
+        "translationFailed": "ဘာသာပြန်မှု မအောင်မြင်ပါ: {{error}}",
+        "unknown": "အမည်မသိ အမှား"
+    }
+}

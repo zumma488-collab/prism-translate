@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "AI Çevirmen",
+        "selectModel": "Model Seç",
+        "changeModel": "Model Değiştir",
+        "manage": "Yönet",
+        "settings": "Ayarlar",
+        "noModels": "Etkin model yok.",
+        "language": "Dil"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "Çevrilecek metni girin...",
+            "autoDetect": "Otomatik Algıla",
+            "languages": "{{count}} dil",
+            "languages_one": "{{count}} dil",
+            "languages_other": "{{count}} dil",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "Dil Ekle",
+            "add": "Ekle",
+            "translate": "Çevir",
+            "translating": "Çevriliyor...",
+            "translateHotkey": "Çevir (Ctrl+Enter)",
+            "selectLanguageWarning": "Lütfen en az bir hedef dil seçin",
+            "cannotRemoveLanguage": "Çeviri sırasında dil kaldırılamaz",
+            "removeLanguage": "{{lang}} kaldır"
+        },
+        "output": {
+            "emptyTitle": "Çeviriler burada görünecek",
+            "emptySubtitle": "Metin girin ve başlamak için Çevir'e tıklayın",
+            "copy": "Kopyala",
+            "listen": "Dinle",
+            "showMore": "Daha fazla göster",
+            "showLess": "Daha az göster"
+        }
+    },
+    "settings": {
+        "manageModels": "Model Yönetimi",
+        "connectProvider": "Sağlayıcı Bağla",
+        "editProvider": "Sağlayıcı Düzenle",
+        "description": "AI sağlayıcı ayarlarını ve modelleri yönetin",
+        "searchModels": "Model ara...",
+        "importConfig": "Yapılandırmayı İçe Aktar",
+        "exportConfig": "Yapılandırmayı Dışa Aktar",
+        "deleteProvider": "Sağlayıcıyı Sil",
+        "noModels": "Yapılandırılmış model yok.",
+        "noModelsFound": "Model bulunamadı.",
+        "confirmDelete": "Bu sağlayıcıyı kaldırmak istediğinizden emin misiniz?",
+        "categories": {
+            "popular": "Popüler",
+            "all": "Tüm Sağlayıcılar"
+        },
+        "form": {
+            "displayName": "Görünen Ad",
+            "displayNamePlaceholder": "Sağlayıcım",
+            "baseUrl": "Temel URL",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "Özel Temel URL'yi Etkinleştir",
+            "customBaseUrlHint": "Varsayılan API uç noktasını geçersiz kıl (ör. ters proxy için)",
+            "apiKey": "API Anahtarı",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "Tarayıcınızda yerel olarak depolanır.",
+            "models": "Modeller",
+            "modelId": "Model ID (ör. gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "Ekle",
+            "updateProvider": "Sağlayıcıyı Güncelle",
+            "nameRequired": "Sağlayıcı adı zorunludur",
+            "noModelsAdded": "Henüz model eklenmedi.",
+            "configureProviderHint": "Özel sağlayıcı ayarlarını yapılandırın.",
+            "fetchModels": "/models'den al",
+            "fetching": "Modeller alınıyor...",
+            "selectModels": "Model Seç",
+            "selectModelsDescription": "Sağlayıcı yapılandırmasına eklenecek modelleri seçin.",
+            "addSelected": "Seçilenleri Ekle",
+            "selectAll": "Tümünü Seç",
+            "fetchError": "Model alınamadı: {{error}}",
+            "noModelsFoundFromApi": "API'den model bulunamadı.",
+            "invalidResponse": "Geçersiz yanıt biçimi",
+            "selectedCount": "{{count}} seçili"
+        },
+        "provider": {
+            "searchPlaceholder": "Sağlayıcı ara...",
+            "customProvider": "Özel Sağlayıcı",
+            "customDescription": "Herhangi bir OpenAI uyumlu API",
+            "searchResults": "Arama Sonuçları ({{count}})",
+            "noResults": "Eşleşen sağlayıcı bulunamadı",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "İçe Aktarma Çakışması",
+            "conflictMessage": "Aşağıdaki sağlayıcılar zaten mevcut:",
+            "newProvidersMessage": "{{count}} yeni sağlayıcı eklenecek.",
+            "newProvidersMessage_one": "{{count}} yeni sağlayıcı eklenecek.",
+            "newProvidersMessage_other": "{{count}} yeni sağlayıcı eklenecek.",
+            "cancel": "İptal",
+            "merge": "Birleştir",
+            "override": "Üzerine Yaz"
+        },
+        "toast": {
+            "exportSuccess": "Yapılandırma başarıyla dışa aktarıldı!",
+            "exportFailed": "Dışa aktarma başarısız: {{error}}",
+            "importSuccess": "{{count}} sağlayıcı başarıyla içe aktarıldı!",
+            "importSuccess_one": "{{count}} sağlayıcı başarıyla içe aktarıldı!",
+            "importSuccess_other": "{{count}} sağlayıcı başarıyla içe aktarıldı!",
+            "importFailed": "İçe aktarma başarısız",
+            "mergeSuccess": "Birleştirildi: {{new}} yeni sağlayıcı eklendi, {{merged}} mevcut sağlayıcının modelleri birleştirildi.",
+            "overrideSuccess": "Üzerine yazma tamamlandı: {{count}} sağlayıcı içe aktarıldı.",
+            "overrideSuccess_one": "Üzerine yazma tamamlandı: {{count}} sağlayıcı içe aktarıldı.",
+            "overrideSuccess_other": "Üzerine yazma tamamlandı: {{count}} sağlayıcı içe aktarıldı."
+        }
+    },
+    "errors": {
+        "translationFailed": "Çeviri başarısız: {{error}}",
+        "unknown": "Bilinmeyen hata"
+    }
+}

@@ -10,9 +10,18 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 const SUPPORTED_LANGUAGES = [
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
   { code: 'en', name: 'English', nativeName: 'English' },
-  { code: 'zh', name: 'Chinese', nativeName: '简体中文' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español' },
   { code: 'ja', name: 'Japanese', nativeName: '日本語' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어' },
+  { code: 'my', name: 'Burmese', nativeName: 'မြန်မာ' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский' },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe' },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt' },
+  { code: 'zh', name: 'Chinese (Simplified)', nativeName: '简体中文' },
+  { code: 'zh-TW', name: 'Chinese (Traditional)', nativeName: '繁體中文' },
 ]
 
 const LanguageSwitcher: React.FC = () => {

@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AI-powered translation dashboard built with React 19, TypeScript, and Vercel AI SDK. Integrates 17+ AI providers (Google Gemini, OpenAI, Anthropic, DeepSeek, etc.) for multi-language translation.
+AI-powered translation dashboard built with React 19, TypeScript, and Vercel AI SDK. Integrates 17+ AI providers (Google Gemini, OpenAI, Anthropic, DeepSeek, etc.) for multi-language translation. UI supports 12 languages (ar, en, es, ja, ko, my, pt, ru, tr, vi, zh, zh-TW).
 
 ## Commands
 
 ### Development
+
 ```bash
 npm run dev          # Start dev server on port 3000
 npm run build        # Production build
@@ -61,6 +62,7 @@ The app supports selecting **multiple AI models** for each target language:
   - Model info displayed on `TranslationCard.tsx` and `TranslationGroup.tsx` footer
 
 - **Data Flow**:
+
   ```typescript
   // In App.tsx handleTranslate()
   const tasks: { lang: string; modelKey: string }[] = [];
@@ -104,6 +106,7 @@ The app supports selecting **multiple AI models** for each target language:
 ### Component Structure
 
 **Main Components:**
+
 - `App.tsx`: Main app component with state management and settings persistence
 - `components/Header.tsx`: Top bar with global model selector and settings button
 - `components/TranslationInput.tsx`: Left panel for input text and language selection with per-language model chips
@@ -114,11 +117,13 @@ The app supports selecting **multiple AI models** for each target language:
 - `components/ModelSelectorPopover.tsx`: **[v0.2.0]** Per-language multi-model selection popover (checkbox-based)
 
 **Settings Sub-Views:**
+
 - `components/settings/ConnectProviderView.tsx`: Add new provider wizard
 - `components/settings/EditProviderView.tsx`: Edit provider config and API keys
 - `components/settings/ManageModelsView.tsx`: Enable/disable models per provider
 
 **UI Components (shadcn/ui):**
+
 - 17 shadcn/ui components in `components/ui/` including:
   - Command, Popover, Dialog, Sheet, Tabs, Select, Dropdown Menu
   - Button, Input, Label, Card, Separator, Skeleton, Switch, Textarea, Tooltip, Scroll Area
@@ -170,6 +175,7 @@ To assign multiple models to a specific language:
 6. Results displayed in `TranslationGroup` with shared language header
 
 **Implementation Details:**
+
 - Language chips show a badge with the count of selected models
 - `TranslationGroup` displays results vertically for easy comparison
 - Each result has copy, speak, and visibility toggle buttons
@@ -211,8 +217,8 @@ src/
 ├── config/
 │   └── models.ts              # Provider definitions (single source of truth)
 ├── i18n/
-│   ├── index.ts               # i18next configuration
-│   └── locales/               # Translation files (en, zh, ja)
+│   ├── index.ts               # i18next configuration (12 languages)
+│   └── locales/               # Translation files (ar, en, es, ja, ko, my, pt, ru, tr, vi, zh, zh-TW)
 ├── hooks/                     # Custom React hooks
 └── lib/
     └── utils.ts               # Utility functions
@@ -224,3 +230,28 @@ src/
 - Encryption key derived from user's device-specific data
 - Never commit `.env.local` or expose API keys in code
 - Provider configs with API keys only stored in localStorage (encrypted)
+
+## Development Guidelines
+
+### Internationalization (i18n)
+
+- **NO HARDCODED STRINGS**: All new user-facing UI text MUST be extracted to `src/i18n/locales/`.
+- **Usage**: Always use the `useTranslation` hook from `react-i18next` to render strings. Hardcoding Chinese or English strings directly in JSX components is strictly prohibited.
+
+### UI Components & Styling
+
+- **Component Reuse**: The project utilizes 17 foundational `shadcn/ui` components located in `src/components/ui/`. **Always prioritize reusing or extending these components** before installing or building new composite components from scratch.
+- **Styling Preference**: Use Tailwind CSS utility classes (e.g., `className="..."`) for component styling. Avoid using inline `style={{}}` attributes unless dynamically calculating styles such as layout transforms.
+
+### TypeScript & React Practices
+
+- **Strict Typing**: The project enforces strict TypeScript. All new features, functions, and props MUST include comprehensive type definitions.
+- **Avoid `any`**: The use of the `any` type is strictly forbidden. If a type is unknown or highly dynamic, use `unknown` and properly narrow it down.
+- **Components**: Write functional components and utilize standard React Hooks.
+
+### Git Commit Standard
+
+- **Language**: All commit messages MUST be written in **English**.
+- **Conventional Commits**: Commit messages MUST adhere to the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+  - Formats: `feat: [description]`, `fix: [description]`, `docs: [description]`, `refactor: [description]`, `chore: [description]`.
+  - The description should be concise and clearly state the intent of the changes to maintain international collaboration standards.

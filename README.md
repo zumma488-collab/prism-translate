@@ -28,7 +28,7 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
 - **Modern UI/UX**: Built with `shadcn/ui` and Tailwind CSS v4 for a premium, responsive design.
 - **Micro-Animations**: Enhanced user experience with `tw-animate-css`.
 - **Type-Safe**: Full TypeScript support for robust development.
-
+- **Global i18n Support**: UI available in 12 languages — Arabic, English, Spanish, Japanese, Korean, Burmese, Portuguese, Russian, Turkish, Vietnamese, Simplified Chinese, and Traditional Chinese.
 
 ## 📸 Screenshots
 
@@ -47,6 +47,23 @@ A modern AI-powered translation dashboard built with React 19, TypeScript, and t
 |                  Connection                  |              Custom Provider               |             Model Selection              |
 | :------------------------------------------: | :----------------------------------------: | :--------------------------------------: |
 | ![Connect](docs/images/connect-provider.png) | ![Custom](docs/images/custom-provider.png) | ![Manage](docs/images/manage-models.png) |
+
+## 🌍 Supported Languages
+
+| Language | Code | Native Name |
+|----------|------|-------------|
+| Arabic | `ar` | العربية |
+| English | `en` | English |
+| Spanish | `es` | Español |
+| Japanese | `ja` | 日本語 |
+| Korean | `ko` | 한국어 |
+| Burmese | `my` | မြန်မာ |
+| Portuguese | `pt` | Português |
+| Russian | `ru` | Русский |
+| Turkish | `tr` | Türkçe |
+| Vietnamese | `vi` | Tiếng Việt |
+| Chinese (Simplified) | `zh` | 简体中文 |
+| Chinese (Traditional) | `zh-TW` | 繁體中文 |
 
 ## 🛠 Tech Stack
 
@@ -106,6 +123,7 @@ The following AI Skills were used during development (general configuration, no 
    > **Note**: For local models (like Ollama), API keys are not required.
 
 4. Run the development server:
+
    ```bash
    npm run dev
    ```

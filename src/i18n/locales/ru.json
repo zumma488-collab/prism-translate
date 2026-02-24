@@ -1,0 +1,117 @@
+{
+    "header": {
+        "title": "ИИ Переводчик",
+        "selectModel": "Выбрать модель",
+        "changeModel": "Изменить модель",
+        "manage": "Управление",
+        "settings": "Настройки",
+        "noModels": "Нет активных моделей.",
+        "language": "Язык"
+    },
+    "translation": {
+        "input": {
+            "placeholder": "Введите текст для перевода...",
+            "autoDetect": "Автоопределение",
+            "languages": "{{count}} языков",
+            "languages_one": "{{count}} язык",
+            "languages_other": "{{count}} языков",
+            "charCount": "{{count}} / 5000",
+            "addLanguage": "Добавить язык",
+            "add": "Добавить",
+            "translate": "Перевести",
+            "translating": "Перевод...",
+            "translateHotkey": "Перевести (Ctrl+Enter)",
+            "selectLanguageWarning": "Пожалуйста, выберите хотя бы один целевой язык",
+            "cannotRemoveLanguage": "Невозможно удалить язык во время перевода",
+            "removeLanguage": "Удалить {{lang}}"
+        },
+        "output": {
+            "emptyTitle": "Переводы появятся здесь",
+            "emptySubtitle": "Введите текст и нажмите Перевести для начала",
+            "copy": "Копировать",
+            "listen": "Прослушать",
+            "showMore": "Показать больше",
+            "showLess": "Свернуть"
+        }
+    },
+    "settings": {
+        "manageModels": "Управление моделями",
+        "connectProvider": "Подключить провайдера",
+        "editProvider": "Редактировать провайдера",
+        "description": "Управляйте настройками провайдеров ИИ и моделями",
+        "searchModels": "Поиск моделей...",
+        "importConfig": "Импорт конфигурации",
+        "exportConfig": "Экспорт конфигурации",
+        "deleteProvider": "Удалить провайдера",
+        "noModels": "Модели не настроены.",
+        "noModelsFound": "Модели не найдены.",
+        "confirmDelete": "Вы уверены, что хотите удалить этого провайдера?",
+        "categories": {
+            "popular": "Популярные",
+            "all": "Все провайдеры"
+        },
+        "form": {
+            "displayName": "Отображаемое имя",
+            "displayNamePlaceholder": "Мой провайдер",
+            "baseUrl": "Базовый URL",
+            "baseUrlPlaceholder": "https://api.example.com/v1",
+            "enableCustomBaseUrl": "Включить пользовательский URL",
+            "customBaseUrlHint": "Переопределить стандартную конечную точку API (напр. для обратного прокси)",
+            "apiKey": "API-ключ",
+            "apiKeyPlaceholder": "sk-...",
+            "apiKeyHint": "Хранится локально в вашем браузере.",
+            "models": "Модели",
+            "modelId": "ID модели (напр. gpt-4o)",
+            "modelIdPlaceholder": "model-id",
+            "addModel": "Добавить",
+            "updateProvider": "Обновить провайдера",
+            "nameRequired": "Имя провайдера обязательно",
+            "noModelsAdded": "Модели ещё не добавлены.",
+            "configureProviderHint": "Настройте параметры пользовательского провайдера.",
+            "fetchModels": "Получить из /models",
+            "fetching": "Загрузка моделей...",
+            "selectModels": "Выбрать модели",
+            "selectModelsDescription": "Выберите модели для добавления в конфигурацию провайдера.",
+            "addSelected": "Добавить выбранные",
+            "selectAll": "Выбрать все",
+            "fetchError": "Не удалось загрузить модели: {{error}}",
+            "noModelsFoundFromApi": "Модели не найдены через API.",
+            "invalidResponse": "Недопустимый формат ответа",
+            "selectedCount": "Выбрано: {{count}}"
+        },
+        "provider": {
+            "searchPlaceholder": "Поиск провайдеров...",
+            "customProvider": "Пользовательский провайдер",
+            "customDescription": "Любой API, совместимый с OpenAI",
+            "searchResults": "Результаты поиска ({{count}})",
+            "noResults": "Подходящие провайдеры не найдены",
+            "categoryCount": "{{category}} ({{count}})"
+        },
+        "import": {
+            "conflictTitle": "Конфликт импорта",
+            "conflictMessage": "Следующие провайдеры уже существуют:",
+            "newProvidersMessage": "Будет добавлено {{count}} новых провайдеров.",
+            "newProvidersMessage_one": "Будет добавлен {{count}} новый провайдер.",
+            "newProvidersMessage_other": "Будет добавлено {{count}} новых провайдеров.",
+            "cancel": "Отмена",
+            "merge": "Объединить",
+            "override": "Заменить"
+        },
+        "toast": {
+            "exportSuccess": "Конфигурация успешно экспортирована!",
+            "exportFailed": "Ошибка экспорта: {{error}}",
+            "importSuccess": "Успешно импортировано {{count}} провайдеров!",
+            "importSuccess_one": "Успешно импортирован {{count}} провайдер!",
+            "importSuccess_other": "Успешно импортировано {{count}} провайдеров!",
+            "importFailed": "Ошибка импорта",
+            "mergeSuccess": "Объединено: добавлено {{new}} новых провайдеров, объединены модели {{merged}} существующих провайдеров.",
+            "overrideSuccess": "Замена завершена: импортировано {{count}} провайдеров.",
+            "overrideSuccess_one": "Замена завершена: импортирован {{count}} провайдер.",
+            "overrideSuccess_other": "Замена завершена: импортировано {{count}} провайдеров."
+        }
+    },
+    "errors": {
+        "translationFailed": "Ошибка перевода: {{error}}",
+        "unknown": "Неизвестная ошибка"
+    }
+}
